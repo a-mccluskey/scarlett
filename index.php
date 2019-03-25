@@ -12,14 +12,17 @@
  //include the main template
  include('template/index.php');
 ?>
-<h1>Welcome to Atomway!</h1><p>
-Welcome to the development site for project scarlett compass. This is a holding page designed to showcase how the finished project will look when complete.<br>
+<h1>Welcome to Scarlett!</h1><p>
+Welcome to the development site for project Scarlett compass. This is a holding page designed to showcase how the finished project will look when complete.<br>
 It features a whole new look compared to any site that I have produced before. It also will eventually feature a mobile site theme, that is optimised for mobile devices.<br>
 As I'm sure you've noticed by now, there are a few new elements. Let me talk you through them. At the very top is the header image, in previous versions of the site this acted as a link back to the home page, this is no longer the case. Just below that(at least on the front page) is the promo banner. This acts as a quick link bar to some favourite content.  If you refresh the page you should notice that the promo banner changes content. That is because it displays random content.<br> 
 To the right is the sites menu structure, designed as general departments as such. With each sub page acting as its own content page, or as a mini portal. That's pretty much it, for now. I'm sure that the design and the content will change and evolve over time.</p>
 <h2>Latest live update</h2><p>
 <?php
 /* 
+This section will be twitter style mini updates - short one line bits whats going on/ whats good on TV/ maybe articles that are being planned?
+*/
+/*
 $link=connectToAWDB();
 $sql_tweet = "SELECT t_text, t_location, t_datetime FROM sc_tweets ORDER BY t_datetime DESC ";
 $sql_tweet .= "LIMIT 0, 5";
@@ -38,6 +41,9 @@ while($row=mysqli_fetch_array($tweet_result, MYSQLI_ASSOC)) {
 <p>
 This bit should poll from the database to find the latest 5 articles that have been created and published, in descending order; This isn't yet done but will soon be. for now heres an example:<br>
 <?php
+/*
+Still not sure I like this idea/bit
+*/
 /*
 $sql_updates = "SELECT art_id, art_title, art_created, art_published FROM sc_articles ";
 $sql_updates .= "WHERE art_published = TRUE ORDER BY art_created DESC LIMIT 0, 5";
