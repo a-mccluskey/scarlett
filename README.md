@@ -1,14 +1,14 @@
-# Scarlett
+# Scarlett V0.1
 
 Tested and is used on php 5.5 and MySQL 5.0.8 with both apache or IIS
+At the moment this is Alpha type software, do not use on a production enviroment that matters, 
+STRONGLY suggest renaming the admin folder somthing different so anyone can't just edit stuff.
 
-need to put the admin side in after been checked for
- 
+
 I need to work on my documentation skills...
-
 Frankly need to rebuild the whole thing from scratch to remove the debug code and stuff...
 
-----Project Scarlet Compass ----
+----Project Scarlet ----
 
 This is an attempt at replaceing the legacy (dragons) website.
 
@@ -25,9 +25,14 @@ Design Template		(OKAY)
 Start Template engine	(IN PROGRESS)
 Begin Testing		(OKAY)
 User management		()
-Login System		()
+Login System		(IN PROGRESS)
 Site Backend		(IN PROGRESS)
 Start Photo Gallery	(IN PROGRESS)
 Finalise Site design	()
 Design Mobile Theme	(OKAY)
 Mobile Backend		(IN PROGRESS)
+View count on articles and images ()
+Admin statistics screen ()
+Rebuild entire admin back end so that there are less files ()
+Some way of changing the theme from mutiple uploaded files ()
+Install files ()
