@@ -38,8 +38,7 @@ include('session.php');
  //admitedly a file can have a png extension but be of jpg type, but this isnt really an issue
  //so the file needs to be of the right type and right extensions and be small enough
  if((($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg")
- || ($_FILES["file"]["type"] == "image/jpg") || ($_FILES["file"]["type"] == "image/pjpeg")
- || ($_FILES["file"]["type"] == "image/x-png") || ($_FILES["file"]["type"] == "image/png"))
+ || ($_FILES["file"]["type"] == "image/jpg")  || ($_FILES["file"]["type"] == "image/png"))
  && ($_FILES["file"]["size"] < $max_size)  && in_array($extension, $allowedExts)) 
   {
    if ($_FILES["file"]["error"] > 0) {
@@ -62,9 +61,22 @@ include('session.php');
     "../temp/" . $final_file_name);
 	//the file first gets stored in /temp/
     chmod("../temp/". $final_file_name, 0777);
-	//allow php images to modify the file
-	//kind of a security risk as it means the server owner, not just the website owner can view the files
-    $original_img = imagecreatefromjpeg("../temp/". $final_file_name);
+    //allow php images to modify the file
+
+    if (($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/jpg") )
+    {
+        $original_img = imagecreatefromjpeg("../temp/". $final_file_name);
+    }
+    if ($_FILES["file"]["type"] == "image/gif")
+    {
+        $original_img = imagecreatefromgif("../temp/". $final_file_name);
+    }
+    if ($_FILES["file"]["type"] == "image/png")
+    {
+        $original_img = imagecreatefrompng("../temp/". $final_file_name);
+    }
+
+    //Get the original image dimensions
     list($f_width, $f_height) = getimagesize("../temp/". $final_file_name);
     
     $Rwidth = 800;
