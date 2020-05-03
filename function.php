@@ -22,9 +22,9 @@
          echo "</tr>\n\n <tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
-	echo "<td><a href=\"gallery.php?img=".$image_number[$i]."\"><div style=\"display: flex; justify-content: center;\"><img src=render.php?id=".$image_number[$i]."&s=p></div></a>";
-	$result = dbQuery("SELECT img_file_title, img_description FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
+    $result = dbQuery("SELECT img_file_title, img_description, img_in_album FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    echo "<td><a href=\"gallery.php?img=".$image_number[$i]."&alb=".$row['img_in_album']."\"><div style=\"display: flex; justify-content: center;\"><img src=render.php?id=".$image_number[$i]."&s=p></div></a>";
     echo " <figcaption>".$row['img_file_title']."</figcaption><br> &nbsp;".$row['img_description']."</td>";
     $i++; 
     $col++; 
@@ -32,7 +32,11 @@
   disconnectAWDB($link2);
   echo "</tr>\n</table>";
  }//make_table
+
  function make_admin_table($max_size, $image_number) { 
+ $corrector="../";
+ if($_SERVER['HTTP_HOST'] == "admin.atomway.co.uk")
+	 $corrector = "https://atomway.co.uk/";
   global $isMobile;
   if($isMobile == true) { $cols = 2; } 
   else { $cols = 3; }
@@ -45,7 +49,7 @@
          echo "</tr>\n\n <tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
-	echo "<td><a href=\"gallery.php?img=".$image_number[$i]."\"><img src=..\\render.php?id=".$image_number[$i]."&s=p></a>";
+	echo '<td><a href="./gallery.php?img='.$image_number[$i].'"><img src='.$corrector.'\render.php?id='.$image_number[$i].'&s=p></a>';
 	$result = dbQuery("SELECT img_file_title, img_description FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     echo " <figcaption>".$row['img_file_title']."</figcaption><br> &nbsp;".$row['img_description']."</td>";
@@ -81,10 +85,16 @@
  }//isnumeric
 }//img_id_to_url
 
- function gallery_listing($max, $img_data) {
+
+
+ function gallery_listing($max, $img_data, $admin) {
   global $isMobile;
+  
   if($isMobile == true) { $cols = 2; } 
   else { $cols = 3; }
+  if ($admin) $correction = "../";
+  if($_SERVER['HTTP_HOST'] == "admin.atomway.co.uk")
+	 $correction = "https://atomway.co.uk/";
   $i=1;
   $col=1;
   echo "<table>\n\n <tr>";
@@ -93,7 +103,7 @@
          echo "</tr>\n\n\n <tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
-	echo "<td><a href=\"gallery.php?alb=".$img_data[$i][0]."\"><img src=".$img_data[$i][5]."></a>\n";
+	echo "<td><a href=\"gallery.php?alb=".$img_data[$i][0]."\"><img src=".$correction.$img_data[$i][5]."></a>\n";
     echo " <figcaption>" . $img_data[$i][1] . "</figcaption><br> " . $img_data[$i][2] . " - <i>" . $img_data[$i][3] . " images</i></td>\n";
     $i++; 
     $col++; 
