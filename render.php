@@ -28,26 +28,25 @@
   if($image_SIZE=="r") { displayImage($img_regular_url); }
   if($image_SIZE=="e") { displayImage($img_expanded_url); }
  }
- else { include("assets/not_found.png"); } //end if database connection failed
+ else { displayImage("assets/not_found.png"); } //end if database connection failed
  disconnectAWDB($link);
 
 
 }
 else 
 { //if the argument isn't a number, then chances are it's a poorly setup link, or more possibly an attempt to do SQL injection
-include("assets/not_found.png"); }
+displayImage("assets/not_found.png"); }
 
   function displayImage($loc) {
-  if (file_exists($loc)) {
-    header('Content-Description: File Transfer');
-    header('Content-Type: application/octet-stream');
-    //header('Content-Disposition: attachment; filename="'.basename($loc).'"');
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($loc));
-    readfile($loc);
-  }//if exists
-else { include("assets/not_found.png"); }
- }//displayImage()
+    if (file_exists($loc)) {
+      header('Content-Description: File Transfer');
+      header('Content-Type: '.image_type_to_mime_type(exif_imagetype($loc)));
+      header('Expires: 0');
+      header('Cache-Control: must-revalidate');
+      header('Pragma: public');
+      header('Content-Length: ' . filesize($loc));
+      readfile($loc);
+    }//if exists
+    else { include("assets/not_found.png"); }
+  }//displayImage()
 ?>
