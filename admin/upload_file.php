@@ -66,14 +66,47 @@ include('session.php');
 	//kind of a security risk as it means the server owner, not just the website owner can view the files
     $original_img = imagecreatefromjpeg("../temp/". $final_file_name);
     list($f_width, $f_height) = getimagesize("../temp/". $final_file_name);
-    $img_p = imagecreatetruecolor(300, 225);
-    $img_r = imagecreatetruecolor(800, 600);
-    imagecopyresampled($img_p, $original_img, 0,0,0,0, 300,225,$f_width, $f_height);
-    imagecopyresampled($img_r, $original_img, 0,0,0,0, 800,600,$f_width, $f_height);
+    
+    $Rwidth = 800;
+    $Rheight = 600;
+    $diffWidthReg = $f_width -$Rwidth;
+    $diffHeightReg = $f_height - $Rhight;
+    if($diffHeightReg > $diffWidthReg)
+    {
+        $temp = $f_width / $Rwidth;
+        $Rheight = round($f_height / $temp);
+    }
+    if ($diffWidthReg > $diffHeightReg)
+    {
+        $temp = $f_height / $Rheight;
+        $Rwidth = round($f_width / $temp);
+    }
+
+    $Pwidth = 300;
+    $Pheight = 225;
+    $diffWidthPrev = $f_width-$Pwidth;
+    $diffHeightPrev = $f_height-$Pheight;
+    if($diffHeightPrev < $diffWidthPrev)
+    {
+        $temp = $f_width / $Pwidth;
+        $Pheight = round($f_height / $temp);
+    }
+    if ($diffWidthPrev < $diffHeightPrev)
+    {
+        $temp = $f_height / $Pheight;
+        $Pwidth = round($f_width / $temp);
+    }
+
+    $img_p = imagecreatetruecolor(300, $Pheight);
+    $img_r = imagecreatetruecolor($Rwidth, $Rheight);
+    imagecopyresampled($img_p, $original_img, 0,0,0,0, $Pwidth,$Pheight,$f_width, $f_height);
+    imagecopyresampled($img_r, $original_img, 0,0,0,0, $Rwidth,$Rheight,$f_width, $f_height);
     imagejpeg($img_p, "../".$p_filename);
     imagejpeg($img_r, "../".$r_filename);
     rename("../temp/".$final_file_name, "../".$e_filename);
     echo "<br>Uploaded Sucsessfully!<br><img src=\"../" . $p_filename . "\"><br>";
+    echo "<a href=\"../".$r_filename."\">Regular</a><br>";
+    echo "<a href=\"../".$e_filename."\">Extended</a><br>";
     echo "Fullsize filename is: ". $e_filename."<br>";
 
     //All three versions of the file should exist so now to add to the database...
