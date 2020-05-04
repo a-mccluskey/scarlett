@@ -10,8 +10,8 @@ include('session.php');
  include_once '../config.php';
  include_once '../function.php';
   $domainCorrector="../";
- if($_SERVER['HTTP_HOST'] == "admin.atomway.co.uk")
-	 $domainCorrector = "https://atomway.co.uk/";
+ if($_SERVER['HTTP_HOST'] == "subdomain.domain.com")
+	 $domainCorrector = "https://domain.com/";
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -80,8 +80,8 @@ include('session.php');
     disconnectAWDB($link);
 	
 	$corrector = "../";
-    if($_SERVER['HTTP_HOST'] == "admin.atomway.co.uk")
-	 $corrector = "https://atomway.co.uk/";
+    if($_SERVER['HTTP_HOST'] == "subdomain.domain.com")
+	 $corrector = "https://domain.com/";
  
       $gallery_browser = FALSE;
       echo " -> <a href=\"gallery.php\">Gallery</a> ->";
