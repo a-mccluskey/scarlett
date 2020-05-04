@@ -9,6 +9,9 @@ include('session.php');
 */
  include_once '../config.php';
  include_once '../function.php';
+  $domainCorrector="../";
+ if($_SERVER['HTTP_HOST'] == "admin.atomway.co.uk")
+	 $domainCorrector = "https://atomway.co.uk/";
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -17,7 +20,7 @@ include('session.php');
  //Do we want the user/article naviagtion structure
  $isUserPage = False;
  //Do we want the Admin naviagtion structure
- $isAdminPage = False;
+ $isAdminPage = True;
 
  $page_title = "Gallery";
  include('../template/index.php');
@@ -75,14 +78,19 @@ include('session.php');
     $result = dbQuery($is_img_pub_query, $link);
     $row = mysqli_fetch_array($result);
     disconnectAWDB($link);
-    
+	
+	$corrector = "../";
+    if($_SERVER['HTTP_HOST'] == "admin.atomway.co.uk")
+	 $corrector = "https://atomway.co.uk/";
+ 
       $gallery_browser = FALSE;
       echo " -> <a href=\"gallery.php\">Gallery</a> ->";
       echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
 	  echo alb_id_to_name($row['img_in_album']);
 	  echo "</a></p>\n<br>";
-      echo "<a href=\"..\\render.php?id=".$image_ID."&s=e\">";
-      echo "<img src=\"..\\render.php?id=" . $image_ID ."&s=r\"></a>\n<br>\n<br> "; 
+      echo '<a href="'.$corrector.'render.php?id='.$image_ID.'&s=e">';
+      echo '<img src="'.$corrector.'render.php?id='.$image_ID.'&s=r">';
+	  echo "</a>\n<br>\n<br>"; 
 	  echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n<br>";
 	  
     //check for image existing, check that the album is published
@@ -103,7 +111,7 @@ include('session.php');
  $link = connectToAWDB();
 
  $sql = "SELECT * FROM sc_album_details INNER JOIN sc_image_details ON ";
- $sql .= "sc_album_details.album_thumb=sc_image_details.img_file_id WHERE sc_album_details.album_public = 1 ";
+ $sql .= "sc_album_details.album_thumb=sc_image_details.img_file_id";
 
  $result= dbQuery($sql, $link);
  //Get all album details, that are public
@@ -126,7 +134,7 @@ include('session.php');
  $array_size=$i;
  //ammount of albums
 
- gallery_listing($array_size, $album_data);
+ gallery_listing($array_size, $album_data, true);
 
  echo "</div>";
 } //end displaying list of galleries
