@@ -146,5 +146,5 @@ error_reporting(E_ALL);*/
 } //end displaying list of galleries
 ?>
 </div>
-</BODY>
-</HTML>
+</body>
+</html>

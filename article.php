@@ -66,5 +66,5 @@ else
   header('Location: .'); }
 ?>
 </div>
-</BODY>
-</HTML>
+</body>
+</html>
