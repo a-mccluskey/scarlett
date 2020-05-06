@@ -40,6 +40,7 @@ function connectToAWDB() {
   if (!$result) {
     $message  = 'Invalid query: ' . mysqli_error() . "<br>\n";
     $message .= 'Whole query: ' . $sql_Query;
+    disconnectAWDB($con);
     die($message);
   } //end failed query
   return $result;
