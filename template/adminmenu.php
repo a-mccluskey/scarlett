@@ -1,4 +1,9 @@
-<div id="nav_border" style="display:none;"><nav>
+<?php
+if($isMobile) { 
+    echo '<div id="nav_border" style="display:none;">'; }
+    else {
+    echo "<div id=\"nav_border\">\n"; } 
+?><nav>
 <a href="../index.php">Home</a><hr>
 <a href="index.php">Admin</a><hr>
 <a href="article_add.php">Add a new article</a><hr>
