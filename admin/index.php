@@ -14,7 +14,7 @@ include('session.php');
 ?>
 <h1>Admin Control panel</h1><p>
 <?php
-echo "Welcome " . $_SESSION['user']. "<br>";
+echo "Welcome " . $_SESSION['friendlyName']. "<br>";
 ?>
 Useful Features that will need linking to...<br>
 Also some description. Ideally should be a lighter weight than the content pages, less images etc. perhaps needing a separate style sheet? Should only be viewable from after the login page<br></P>
@@ -28,9 +28,8 @@ Also some description. Ideally should be a lighter weight than the content pages
 <h2>Navigation manager</h2>
 <p>Items need to be checked that the URL exists</p>
 <p>
-Add<br>
-Remove<br>
-Manage(alter paths, spellings)<br>
+<a href="navigation_add.php">Add</a><br>
+<a href="navigation_edit.php">Edit / Remove</a><br>
 </p>
 <h2>Article mangement</h2>
 <p>This bit is just a bit more complex, but the basic premise still stands. Definately needs preview option, created date, updated date etc.</p>
@@ -39,7 +38,7 @@ Manage(alter paths, spellings)<br>
 <a href="article_deleter.php">Remove</a><br>
 <a href="article_viewer.php">Manage</a>(Such as publishing, unpublishing, Note of URL for links)<br></p>
 <h2>Gallery Management</h2>
-<p>Here we can add new albums, edit the albums etc. <a href="album_view.php">View Albums</a></p><p>
+<p>Here we can add new albums, edit the albums etc. <!--<a href="album_view.php">--><a href="gallery.php">View Albums</a></p><p>
 <a href="album_add.php">Add New Album</a><br>
 <a href="album_change.php">Modify an Album</a> - title, public, etc<br>
 <a href="album_insert.php">Insert images into an album</a><br></p>

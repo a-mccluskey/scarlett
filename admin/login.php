@@ -1,8 +1,4 @@
 <?php 
-/*
-	VERY simple login feature, this will in time get improved so that we do login vs the database - as this is only used as a
-	example for a local IIS with just a handful of users, I'll leave as is until a bit more work gets done on it.
-*/
  function login()
 {
     if(empty($_POST['username']))
@@ -17,22 +13,33 @@
         return false;
     }
     
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    $username = stripslashes(trim($_POST['username']));
+    $password = stripslashes(trim($_POST['password']));
+    include_once '../config.php';
+    $link = connectToAWDB();
+    $username = mysqli_real_escape_string($link, $username);
+    $password = mysqli_real_escape_string($link, $password);
+
+    $SQL = "SELECT * FROM sc_users WHERE username = '$username'";
+    $result = dbQuery($SQL, $link);
     
-    if(!($username=="abc"&&$password=="123"))
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    disconnectAWDB($link);
+    if(!(is_null($row))&&($row['password'] == $password))
     {
-		echo "whoops username or password is wrong";
+		session_start();
+        $_SESSION['user'] = $username;
+        $_SESSION['friendlyName'] = $row['friendly_name'];
+        header("location: index.php");
+        return true;
+    }
+    else
+    {
+        echo "whoops username or password is wrong";
         return false;
     }
-	
-    
-    session_start();
-    
-    $_SESSION['user'] = $username;
-    header("location: index.php");
-    return true;
-}//login.()
+
+}//login()
  
 if($_GET['i']==1){
 	login();
@@ -47,6 +54,7 @@ else if($_GET['i']==2) {
 else
 {
   $isFrontPage = False;
+  $isAdminPage = True;
  $page_title = "Admin: Login";
  include '../template/index.php';
 echo "<h1>Admin Login page</h1><p>";
@@ -65,16 +73,6 @@ echo "</p>";
  
 }//if i=/=1
 ?>
-
-
-
-
-
-
-
-
-
-
 </div>
-</BODY>
-</HTML>
+</body>
+</html>
