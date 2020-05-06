@@ -2,7 +2,7 @@
 $isMobile  = true;    //this is a mobile version of the site
 if(strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'Mobi'))
  { 
-//  include '../../config.php'; 
+  include '../../config.php'; 
 ?>
 <!DOCTYPE html><html><head>
  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
@@ -25,7 +25,7 @@ function toggle_visibility(id) {
  else
   e.style.display = 'block';
  }
-//-->
+-->
 </script>
 </head>
 <body>
@@ -38,7 +38,6 @@ function toggle_visibility(id) {
 
  if($isAdminPage) {
    include '../template/adminmenu.php';
-   include '../template/navigation.php';
  } else {
 include './template/navigation.php';	 
  }
@@ -71,7 +70,7 @@ else {
 // global $isFrontPage;
  if($isFrontPage==True) { 
   include 'template/promo_selector.php';
-  echo "<br clear=left>";
+  echo "<br clear=left>\n";
  }
  if($isUserPage == True) {
    include 'template/navigation.php';
