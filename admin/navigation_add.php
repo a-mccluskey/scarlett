@@ -12,7 +12,7 @@ include('session.php');
  include '../template/index.php';
 ?>
 <h1>Navigation Manager Viewer</h1>
-<h2>Promo banner manager</h2>
+<h2>Navigation Link Add</h2>
 <p>Items added will be at the bottom of the navigation list.</p>
 <p>
 <form action="admin_functions.php?func=add_navigation" method="post">

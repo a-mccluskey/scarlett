@@ -29,7 +29,7 @@ Also some description. Ideally should be a lighter weight than the content pages
 <p>Items need to be checked that the URL exists</p>
 <p>
 <a href="navigation_add.php">Add</a><br>
-<a href="navigation_edit.php">Edit / Remove</a><br>
+<a href="navigation_viewer.php">Edit / Remove</a><br>
 </p>
 <h2>Article mangement</h2>
 <p>Options for handling the article pages.</p>
