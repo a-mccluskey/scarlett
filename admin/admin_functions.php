@@ -21,12 +21,8 @@ This page contains all the database functions to get called so that they can nea
  $isAdminPage = True;
 
  include '../template/index.php';
-//debugging, output what function is called
-//echo $_GET["func"]."<br>\n";
 
 //TODO: check that the calling page is from the correct site + directory
-
-
 
 
 //switches act as a big if, else if, else if, else
@@ -35,8 +31,8 @@ This page contains all the database functions to get called so that they can nea
    case "add_promo_item":
 /*
 +-----------------------------------------------+
-�			add_promo_item		�
-�			create a new promo item	�
+|			add_promo_item		
+|			create a new promo item	
 +-----------------------------------------------+
 */
   //connect to mysql database
@@ -71,8 +67,8 @@ This page contains all the database functions to get called so that they can nea
  case "del_promo_item":
 /*
 +------------------------------------------------+
-�			del_promo_item		 �
-�						 �
+|			del_promo_item		 �
+|
 +------------------------------------------------+
 */
 
@@ -99,8 +95,8 @@ This page contains all the database functions to get called so that they can nea
  case "edit_promo_item";
 /*
 +-----------------------------------------------+
-�			edit_promo_item		�
-�					YES	�
+|			edit_promo_item		�
+|					YES	�
 +-----------------------------------------------+
 */
 
@@ -134,8 +130,8 @@ This page contains all the database functions to get called so that they can nea
  case"add_article";
 /*
 +-----------------------------------------------+
-�			add_article		�
-�						�
+|			add_article		
+|
 +-----------------------------------------------+
 */
 
@@ -169,13 +165,6 @@ This page contains all the database functions to get called so that they can nea
   //makes sense that an article cannot be updated before it was created
  $sql_statement = "INSERT INTO sc_articles (art_title, art_text, art_published, art_created, art_updated) VALUES ('$page_title', '$page_content', '$page_isPublished', '$created_date', '$created_date')";
 
-//debugging
-//echo $sql_statement;
-  
-
- // mysql_query($sql_statement);
-
-// Debugging
   dbQuery($sql_statement, $link);
   echo "1 record added";
 
@@ -190,8 +179,8 @@ case"edit_article";
 
 /*
 +-----------------------------------------------+
-�			edit_article		�
-�						�
+|			edit_article		
+|
 +-----------------------------------------------+
 */
 
@@ -230,8 +219,8 @@ break;
 case"delete_article";
 /*
 +-----------------------------------------------+
-�			delete_article		�
-�						�
+|			delete_article		
+|
 +-----------------------------------------------+
 */
 if(is_numeric($_GET["id"])==1) {
@@ -280,8 +269,8 @@ break;
 case"add_imgtoalbum";
 /*
 +-----------------------------------------------+
-�			add_imgtoalbum		�
-�						�
+|			add_imgtoalbum		
+|
 +-----------------------------------------------+
 */
 
@@ -307,8 +296,8 @@ break;
 case"add_album";
 /*
 +-----------------------------------------------+
-�			add_album		�
-�							�
+|			add_album		
+|
 +-----------------------------------------------+
 */ 
    $alb_thumb = stripslashes($_REQUEST["alb_thumb"]);
@@ -354,8 +343,8 @@ case"add_album";
 case"edit_album";
 /*
 +-----------------------------------------------+
-�			edit_album		�
-�			�
+|			edit_album		
+|
 +-----------------------------------------------+
 */ 
     $link = connectToAWDB();
@@ -393,8 +382,8 @@ case"edit_album";
  case"add_navigation";
  /*
 +-----------------------------------------------+
-�			add_album		�
-�			�
+|			add_album		
+|
 +-----------------------------------------------+
 */ 
 $link = connectToAWDB();
@@ -414,10 +403,59 @@ if($nav_text == "" || $nav_link=="")
 }
 disconnectAWDB($link);
 break;//add_navigation
+case "delete_nav";
+/*
++-----------------------------------------------+
+|			delete_nav
+|
++-----------------------------------------------+
+*/ 
+if(is_numeric($_GET["id"])==1) 
+{
+  $areYouSure=$_GET["verify"];
+  if($areYouSure == True) 
+  {
+	  echo "true";
+	  //connect to mysql database
+	  $link=connectToAWDB();
+	
+	  //charset+escape chars
+	  //we already know that "id" is a number so dont worry about it
+	  $del_id = mysqli_real_escape_string($link, $_GET["id"]);
+
+	  //prepare the statement
+    $sql_statement = "DELETE FROM sc_navigation WHERE nav_id = '$del_id'";
+
+	  //run the statement 
+    dbQuery($sql_statement, $link);
+	  //done
+  	disconnectAWDB($link);
+  	
+} //end $areyousure = True
+  else 
+  {
+	//user is not sure/not been prompted...
+	//output are they sure, okay not elegant but it works
+	echo "<p>Are you sure that you would like to delete Navigation Link: "; 
+	echo $_GET["id"] . " ?</p><p>";
+	echo '<a href="admin_functions.php?func=delete_nav&id=';
+	echo $_GET["id"]."&verify=True";
+	echo '"><b>YES</b></a> or <a href="."><b>NO</b></a>';
+
+  } //end are your sure = false
+} //end is a number = true
+ else 
+ {
+  //if the argument isn't a number
+  echo "ERROR: Invalid navigation ID is not given"; 
+} //end is a number = false
+
+break;//delete_nav
  default:
   echo "illegal file access";
- //okay, should also just redirect to the front page.
-  } ?>
+  //okay, should also just redirect to the front page.
+  } 
+  ?>
 </p>
 </div>
 </body>
