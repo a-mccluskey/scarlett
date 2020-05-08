@@ -35,8 +35,8 @@ This page contains all the database functions to get called so that they can nea
    case "add_promo_item":
 /*
 +-----------------------------------------------+
-¦			add_promo_item		¦
-¦			create a new promo item	¦
+ï¿½			add_promo_item		ï¿½
+ï¿½			create a new promo item	ï¿½
 +-----------------------------------------------+
 */
   //connect to mysql database
@@ -71,8 +71,8 @@ This page contains all the database functions to get called so that they can nea
  case "del_promo_item":
 /*
 +------------------------------------------------+
-¦			del_promo_item		 ¦
-¦						 ¦
+ï¿½			del_promo_item		 ï¿½
+ï¿½						 ï¿½
 +------------------------------------------------+
 */
 
@@ -99,8 +99,8 @@ This page contains all the database functions to get called so that they can nea
  case "edit_promo_item";
 /*
 +-----------------------------------------------+
-¦			edit_promo_item		¦
-¦					YES	¦
+ï¿½			edit_promo_item		ï¿½
+ï¿½					YES	ï¿½
 +-----------------------------------------------+
 */
 
@@ -134,8 +134,8 @@ This page contains all the database functions to get called so that they can nea
  case"add_article";
 /*
 +-----------------------------------------------+
-¦			add_article		¦
-¦						¦
+ï¿½			add_article		ï¿½
+ï¿½						ï¿½
 +-----------------------------------------------+
 */
 
@@ -190,8 +190,8 @@ case"edit_article";
 
 /*
 +-----------------------------------------------+
-¦			edit_article		¦
-¦						¦
+ï¿½			edit_article		ï¿½
+ï¿½						ï¿½
 +-----------------------------------------------+
 */
 
@@ -230,8 +230,8 @@ break;
 case"delete_article";
 /*
 +-----------------------------------------------+
-¦			delete_article		¦
-¦						¦
+ï¿½			delete_article		ï¿½
+ï¿½						ï¿½
 +-----------------------------------------------+
 */
 if(is_numeric($_GET["id"])==1) {
@@ -280,21 +280,21 @@ break;
 case"add_imgtoalbum";
 /*
 +-----------------------------------------------+
-¦			add_imgtoalbum		¦
-¦						¦
+ï¿½			add_imgtoalbum		ï¿½
+ï¿½						ï¿½
 +-----------------------------------------------+
 */
 
  $img_id = $_REQUEST["img_id"];
  $alb_id = $_REQUEST["alb_id"];
 // echo "Result".is_numeric($img_id);
-  echo "Image is: ". $img_id ." Album is: ". $alb_id;
+  echo "Image is: ". $img_id ." Album is: ". $alb_id ."<br>";
   if(is_numeric($alb_id) AND is_numeric($img_id)) {
   //connect to mysql database
   $link=connectToAWDB();
   $sql = "UPDATE sc_image_details SET img_in_album = '$alb_id' WHERE img_file_id = '$img_id'";
   dbQuery($sql, $link);
-   echo "1 image added to album";
+   echo "1 image added to album<br>";
   $alb_img_inc = "UPDATE sc_album_details SET album_img_count = album_img_count + 1 WHERE album_id = '$alb_id'";
   dbQuery($alb_img_inc, $link);
   disconnectAWDB($link);
@@ -307,15 +307,16 @@ break;
 case"add_album";
 /*
 +-----------------------------------------------+
-¦			add_album		¦
-¦							¦
+ï¿½			add_album		ï¿½
+ï¿½							ï¿½
 +-----------------------------------------------+
 */ 
    $alb_thumb = stripslashes($_REQUEST["alb_thumb"]);
    if($alb_thumb =="") { $alb_thumb=1; }
    //in the event that no default image is specified then the balloon is selected
 
-  if(is_numeric($alb_thumb)) {
+  if(is_numeric($alb_thumb) && ($_REQUEST["alb_name"] != "")) 
+  {
     $link = connectToAWDB();
     //connect to mysql database
 
@@ -324,7 +325,14 @@ case"add_album";
     $alb_name = mysqli_real_escape_string($link, $alb_name);
 
     $alb_date = stripslashes($_REQUEST["alb_date"]);
-	$alb_date = strtotime($alb_date);
+    if ($alb_date == "")
+    {
+      $alb_date = date("d-m-yy");
+    }
+    else
+    {
+      $alb_date = strtotime($alb_date);
+    }
     $alb_date = date('Y-m-d', $alb_date);
     $alb_thumb = mysqli_real_escape_string($link, $alb_thumb);
     $alb_public = 0;
@@ -346,8 +354,8 @@ case"add_album";
 case"edit_album";
 /*
 +-----------------------------------------------+
-¦			edit_album		¦
-¦			STILL CONTAINS WRONG CODE¦
+ï¿½			edit_album		ï¿½
+ï¿½			ï¿½
 +-----------------------------------------------+
 */ 
     $link = connectToAWDB();
@@ -382,11 +390,35 @@ case"edit_album";
   
  //end edit_album
  break;
+ case"add_navigation";
+ /*
++-----------------------------------------------+
+ï¿½			add_album		ï¿½
+ï¿½			ï¿½
++-----------------------------------------------+
+*/ 
+$link = connectToAWDB();
+$nav_text = mysqli_real_escape_string($link, $_REQUEST["navtext"]);
+$nav_link= mysqli_real_escape_string($link, $_REQUEST["navlink"]);
+if($nav_text == "" || $nav_link=="")
+{
+  echo "Link or text are blank";
+}
+  else
+{
+  $sql_statement = "INSERT INTO sc_navigation (nav_text, nav_link) VALUES ('$nav_text', '$nav_link')";
+  $result= dbQuery($sql_statement, $link);
+  $nav_id = $link->insert_id;
+
+  echo "Added link for ".$nav_text. "ID is:" . $nav_id;
+}
+disconnectAWDB($link);
+break;//add_navigation
  default:
   echo "illegal file access";
  //okay, should also just redirect to the front page.
   } ?>
 </p>
 </div>
-</BODY>
-</HTML>
+</body>
+</html>
