@@ -39,6 +39,7 @@ $link=connectToAWDB();
  $page_data[$i][$page_updated] = $row['art_updated'];
  $i++;
  }
+ disconnectAWDB($link);
  $i--;
 
 /* for ($j=0; $j<$i; $j++)
@@ -63,12 +64,7 @@ $link=connectToAWDB();
     echo "<td><a href=\"article.php?id=".$page_data[$j][$page_id]."\">VIEW PREVIEW</a></td></tr>\n\n";
    }
 
-
-
-
-
  echo "\n </table>";
-disconnectAWDB($link);
 ?>
 
 

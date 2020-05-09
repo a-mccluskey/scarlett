@@ -41,12 +41,12 @@
 
 }//login()
  
-if($_GET['i']==1){
+$loginTask = $_GET['i'];
+if($loginTask==1){
 	login();
 }//if i=1
-else if($_GET['i']==2) {
+else if($loginTask==2) {
    session_start();
-   
    if(session_destroy()) {
       header("Location: login.php");
    }
@@ -55,22 +55,20 @@ else
 {
   $isFrontPage = False;
   $isAdminPage = True;
- $page_title = "Admin: Login";
- include '../template/index.php';
-echo "<h1>Admin Login page</h1><p>";
-echo "";
-echo "Whoops, looks like you're not logged in...<br>";
-echo "<form action=\"login.php?i=1\" method=\"post\">";
-echo "    <label for=\"uname\"><b>Username</b></label>";
-echo "    <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>";
-echo "";
-echo "    <label for=\"psw\"><b>Password</b></label>";
-echo "    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>";
-echo "";
-echo "    <button type=\"submit\">Login</button>";
-echo "	</form>";
-echo "</p>";
- 
+  $isUserPage = false;
+  $page_title = "Admin: Login";
+  include '../template/index.php';
+  echo "<h1>Admin Login page</h1><p>";
+  echo "";
+  echo "Whoops, looks like you're not logged in...<br>";
+  echo "<form action=\"login.php?i=1\" method=\"post\">";
+  echo "    <label for=\"uname\"><b>Username</b></label>";
+  echo "    <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>";
+  echo "    <label for=\"psw\"><b>Password</b></label>";
+  echo "    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>";
+  echo "    <button type=\"submit\">Login</button>";
+  echo "	</form>";
+  echo "</p>";
 }//if i=/=1
 ?>
 </div>

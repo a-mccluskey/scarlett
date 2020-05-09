@@ -40,9 +40,9 @@ $nav_text = "NavText";
   //loop the list of pages
   for ($j=0; $j<=$NoOfLinks; $j++) {
      echo "<tr><td>".$nav_data[$j][$nav_id]."</td>";
-     echo "<td><a href=\"nav_edit.php?id=".$nav_data[$j][$nav_id].'">' .$nav_data[$j][$nav_text]."</a></td>";
+     echo "<td><a href=\"navigation_edit.php?id=".$nav_data[$j][$nav_id].'">' .$nav_data[$j][$nav_text]."</a></td>";
      echo "<td>".$nav_data[$j][$nav_link]."</td>\n";
-     echo "<td><a href=\"admin_functions.php?func=delete_nav&id=".$nav_data[$j][$nav_id]."\">Delete Link</a></td>";
+     echo "<td><a href=\"admin_functions.php?func=delete_navigation&id=".$nav_data[$j][$nav_id]."\">Delete Link</a></td>";
     }
  
   echo "\n </table>";
