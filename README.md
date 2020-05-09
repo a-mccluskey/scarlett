@@ -1,6 +1,6 @@
-# Scarlett V0.1
+# Scarlett V0.2
 
-Tested and is used on php 5.5 and MySQL 5.0.8 with both apache or IIS
+Tested and is used on php 7.4 and MySQL 5.7 with both apache or IIS
 At the moment this is Alpha type software, do not use on a production enviroment that matters, 
 STRONGLY suggest renaming the admin folder somthing different so anyone can't just edit stuff.
 
@@ -24,8 +24,8 @@ Redefined Checklist(Check When done)
 Design Template		(OKAY)
 Start Template engine	(IN PROGRESS)
 Begin Testing		(OKAY)
-User management		()
-Login System		(IN PROGRESS)
+User management		(OKAY)
+Login System		(OKAY)
 Site Backend		(IN PROGRESS)
 Start Photo Gallery	(IN PROGRESS)
 Finalise Site design	()
