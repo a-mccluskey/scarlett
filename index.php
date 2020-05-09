@@ -29,7 +29,7 @@ while($row=mysqli_fetch_array($tweet_result, MYSQLI_ASSOC)) {
   echo $date." - ".$row['t_text'].  "\n <i>Posted from: <b>".$row['t_location']. "</b></i><br>\n";
   }
   disconnectAWDB($link);
-  echo "</p>\n<p>View Flash updates archive</p>";
+  echo "</p>\n<p><a href=\".\\flash_updates.php\">View Flash updates archive</a></p>";
 ?>
 <h2>Latest content</h2>
 <p>
