@@ -497,6 +497,50 @@ case "edit_navigation";
   disconnectAWDB($link);
 
 break;//edit_navigation
+case "add_flash";
+/*
++-----------------------------------------------+
+|			add_flash
+|
++-----------------------------------------------+
+*/ 
+  $link = connectToAWDB();
+  $flash_text = mysqli_real_escape_string($link, $_REQUEST["flash_text"]);
+  $flash_location= mysqli_real_escape_string($link, $_REQUEST["flash_location"]);
+  $flash_date = date('Y-m-d h:i:s', time());
+  if($flash_text == "" || $flash_location=="")
+  {
+    echo "Text or location are blank";
+  }
+    else
+  {
+    $sql_statement = "INSERT INTO sc_tweets (t_text, t_location, t_datetime) VALUES ('$flash_text', '$flash_location', '$flash_date')";
+    $result= dbQuery($sql_statement, $link);
+    $flash_id = $link->insert_id;
+  
+    echo "Added flash update : ".$flash_text. "ID is:" . $flash_id;
+  }
+
+  disconnectAWDB($link);
+break;//add_flash
+case "edit_flash";
+/*
++-----------------------------------------------+
+|			edit_flash
+|
++-----------------------------------------------+
+*/ 
+
+break;//edit_flash
+case "delete_flash";
+/*
++-----------------------------------------------+
+|			delete_flash
+|
++-----------------------------------------------+
+*/ 
+
+break;//delete_flash
  default:
   echo "illegal file access";
   //okay, should also just redirect to the front page.
