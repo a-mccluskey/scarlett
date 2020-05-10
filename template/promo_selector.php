@@ -36,17 +36,17 @@ while($promo_numb1 == $promo_numb3 or $promo_numb2 == $promo_numb3)
 
 echo '<div id="promo_banner">';
 
-echo "\n <div id=\"promo_item\"><a href=\"" . $imageData[$promo_numb1][$image_linkTo] . "\">\n";
+echo "\n <div class=\"promo_item\"><a href=\"" . $imageData[$promo_numb1][$image_linkTo] . "\"><figure>\n";
 echo " <img src=\"promo/" . $imageData[$promo_numb1][$image_location] . ".jpg\" alt=\"" . $imageData[$promo_numb1][$image_description] . "\">\n";
-echo " <figcaption>" . $imageData[$promo_numb1][$image_description] . "</figcaption></a></div>";
+echo " <figcaption>" . $imageData[$promo_numb1][$image_description] . "</figcaption></figure></a></div>";
 
-echo "\n <div id=\"promo_item\"><a href=\"" . $imageData[$promo_numb2][$image_linkTo] . "\">\n";
+echo "\n <div class=\"promo_item\"><a href=\"" . $imageData[$promo_numb2][$image_linkTo] . "\"><figure>\n";
 echo " <img src=\"promo/" . $imageData[$promo_numb2][$image_location] . ".jpg\" alt=\"" . $imageData[$promo_numb2][$image_description] . "\">\n";
-echo " <figcaption>" . $imageData[$promo_numb2][$image_description] . "</figcaption></a></div>";
+echo " <figcaption>" . $imageData[$promo_numb2][$image_description] . "</figcaption></figure></a></div>";
 if(!$isMobile) {
- echo "\n <div id=\"promo_item\"><a href=\"" . $imageData[$promo_numb3][$image_linkTo] . "\">\n";
+ echo "\n <div class=\"promo_item\"><a href=\"" . $imageData[$promo_numb3][$image_linkTo] . "\"><figure>\n";
  echo " <img src=\"promo/" . $imageData[$promo_numb3][$image_location] . ".jpg\" alt=\"" . $imageData[$promo_numb3][$image_description] . "\">\n";
- echo " <figcaption>" . $imageData[$promo_numb3][$image_description] . "</figcaption></a></div>";
+ echo " <figcaption>" . $imageData[$promo_numb3][$image_description] . "</figcaption></figure></a></div>";
 }
 
 echo "</div>";
