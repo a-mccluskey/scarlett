@@ -8,7 +8,7 @@ STRONGLY suggest renaming the admin folder somthing different so anyone can't ju
 I need to work on my documentation skills...
 Frankly need to rebuild the whole thing from scratch to remove the debug code and stuff...
 
-----Project Scarlet ----
+----Project Scarlett ----
 
 This is an attempt at replaceing the legacy (dragons) website.
 
