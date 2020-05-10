@@ -11,6 +11,7 @@ define('DB_PASSWORD', 'mydbloginpass'); // ...and password
 define('DB_HOST', 'localhost');    // 99% chance you won't need to change this value
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
+$MAIN_DOMAIN = 'https://mydomain.com/subdir/';
 
 function connectToAWDB() {
 /* // Connect to MYSQL PHP4.4
