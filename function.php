@@ -24,8 +24,8 @@
 		}//if column is greater than number of allowable columns
     $result = dbQuery("SELECT img_file_title, img_description, img_in_album FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo "<td><a href=\"gallery.php?img=".$image_number[$i]."&alb=".$row['img_in_album']."\"><div style=\"display: flex; justify-content: center; background-color:#FDE; height:230px;\"><img src=render.php?id=".$image_number[$i]."&s=p></div></a>";
-    echo " <figcaption>".$row['img_file_title']."</figcaption><br> &nbsp;".$row['img_description']."</td>";
+    echo "<td class=\"galleryPreview\"><a href=\"gallery.php?img=".$image_number[$i]."&alb=".$row['img_in_album']."\"><div class=\"GalleryPreviewImg\"><img src=render.php?id=".$image_number[$i]."&s=p></div></a>";
+    echo " <figcaption>".$row['img_file_title']."</figcaption><br> ".$row['img_description']."</td>";
     $i++; 
     $col++; 
     }
@@ -46,10 +46,10 @@
          echo "</tr>\n\n <tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
-	echo '<td><a href="./gallery.php?img='.$image_number[$i].'"><img src='.$MAIN_DOMAIN.'render.php?id='.$image_number[$i].'&s=p></a>';
+	echo '<td class="galleryPreview"><a href="./gallery.php?img='.$image_number[$i].'"><div class="GalleryPreviewImg"><img src='.$MAIN_DOMAIN.'render.php?id='.$image_number[$i].'&s=p></div></a>';
 	$result = dbQuery("SELECT img_file_title, img_description FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo " <figcaption>".$row['img_file_title']."</figcaption><br> &nbsp;".$row['img_description']."</td>";
+    echo " <figcaption>".$row['img_file_title']."</figcaption><br> ".$row['img_description']."</td>";
     $i++; 
     $col++; 
     }
