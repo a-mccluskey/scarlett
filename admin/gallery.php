@@ -9,9 +9,6 @@ include('session.php');
 */
  include_once '../config.php';
  include_once '../function.php';
-  $domainCorrector="../";
- if($_SERVER['HTTP_HOST'] == "subdomain.domain.com")
-	 $domainCorrector = "https://domain.com/";
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
@@ -63,7 +60,7 @@ include('session.php');
     $number_of_images = $i;
     $i=1;
     echo "<br> There are: " . $number_of_images . " images in this album<br>\n \n";
-    make_admin_table($number_of_images, $image_number);
+    make_admin_table($number_of_images, $image_number, $MAIN_DOMAIN);
      //display in order that is in database
      //possible - if on mobile allow swiping through images? may need to not include the header until after this point...
    } //if there are in this album
@@ -78,18 +75,14 @@ include('session.php');
     $result = dbQuery($is_img_pub_query, $link);
     $row = mysqli_fetch_array($result);
     disconnectAWDB($link);
-	
-	$corrector = "../";
-    if($_SERVER['HTTP_HOST'] == "subdomain.domain.com")
-	 $corrector = "https://domain.com/";
  
       $gallery_browser = FALSE;
       echo " -> <a href=\"gallery.php\">Gallery</a> ->";
       echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
 	  echo alb_id_to_name($row['img_in_album']);
 	  echo "</a></p>\n<br>";
-      echo '<a href="'.$corrector.'render.php?id='.$image_ID.'&s=e">';
-      echo '<img src="'.$corrector.'render.php?id='.$image_ID.'&s=r">';
+      echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=e">';
+      echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=r">';
 	  echo "</a>\n<br>\n<br>"; 
 	  echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n<br>";
 	  
@@ -134,7 +127,7 @@ include('session.php');
  $array_size=$i;
  //ammount of albums
 
- gallery_listing($array_size, $album_data, true);
+ gallery_listing($array_size, $album_data, $MAIN_DOMAIN);
 
  echo "</div>";
 } //end displaying list of galleries

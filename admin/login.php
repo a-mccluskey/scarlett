@@ -53,6 +53,7 @@ else if($loginTask==2) {
 }//i=2
 else
 {
+  include_once '../config.php';
   $isFrontPage = False;
   $isAdminPage = True;
   $isUserPage = false;

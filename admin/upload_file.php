@@ -109,16 +109,17 @@ include('session.php');
         $Pwidth = round($f_width / $temp);
     }
 
-    $img_p = imagecreatetruecolor(300, $Pheight);
+    $img_p = imagecreatetruecolor($Pwidth, $Pheight);
     $img_r = imagecreatetruecolor($Rwidth, $Rheight);
     imagecopyresampled($img_p, $original_img, 0,0,0,0, $Pwidth,$Pheight,$f_width, $f_height);
     imagecopyresampled($img_r, $original_img, 0,0,0,0, $Rwidth,$Rheight,$f_width, $f_height);
     imagejpeg($img_p, "../".$p_filename);
     imagejpeg($img_r, "../".$r_filename);
     rename("../temp/".$final_file_name, "../".$e_filename);
-    echo "<br>Uploaded Sucsessfully!<br><img src=\"../" . $p_filename . "\"><br>";
-    echo "<a href=\"../".$r_filename."\">Regular</a><br>";
-    echo "<a href=\"../".$e_filename."\">Extended</a><br>";
+    
+    echo "<br>Uploaded Sucsessfully!<br><img src=\"".$MAIN_DOMAIN . $p_filename . "\"><br>";
+    echo "<a href=\"".$MAIN_DOMAIN.$r_filename."\">Regular</a><br>";
+    echo "<a href=\"".$MAIN_DOMAIN.$e_filename."\">Extended</a><br>";
     echo "Fullsize filename is: ". $e_filename."<br>";
 
     //All three versions of the file should exist so now to add to the database...
