@@ -63,6 +63,7 @@ nav {
 img {
  border: 0px;
  margin: 0px;
+ object-fit:scale-down;
 }
 h1 {
  padding-left: 40px;

@@ -55,6 +55,7 @@ nav {
 img {
  border: 0px;
  margin: 2px;
+ object-fit:scale-down;
 }
 .centre {
 //    display: block;
