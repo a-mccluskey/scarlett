@@ -2,10 +2,9 @@
 $isMobile  = true;    //this is a mobile version of the site
 if(strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod') || strstr($_SERVER['HTTP_USER_AGENT'],'Mobi'))
  { 
-  include '../../config.php'; 
 ?>
-<!DOCTYPE html><html><head>
- <meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+<!DOCTYPE html><html lang="en"><head>
+ <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
  <meta name="viewport" content="width=630"> 
  <title><?php 
 if($isFrontPage) {
@@ -15,7 +14,7 @@ else {
  echo $page_title;
 } 
 ?></title>
-<link rel=stylesheet type="text/css" href="<?php if($isAdminPage) echo "."; ?>./assets/mobile.css">
+<link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN; ?>assets/mobile.css">
 <script type="text/javascript">
 <!--    
 function toggle_visibility(id) {
@@ -30,11 +29,8 @@ function toggle_visibility(id) {
 </head>
 <body>
 <div id="wrapper">
-<div id="topper"><a href="."><IMG SRC="<?php if($isAdminPage) echo "."; ?>./assets/mobile.png" alt="Site header"></a> <a href="#"  onclick="toggle_visibility('nav_border');"><img src="<?php if($isAdminPage) echo "."; ?>./assets/menu.png" align="right"></a></div>
+<div id="topper"><a href="."><IMG SRC="<?php echo $MAIN_DOMAIN; ?>assets/mobile.png" alt="Site header"></a> <a href="#"  onclick="toggle_visibility('nav_border');"><img src="<?php echo $MAIN_DOMAIN; ?>assets/menu.png" align="right"></a></div>
 <?php 
-
-// global $isFrontPage;
-
 
  if($isAdminPage) {
    include '../template/adminmenu.php';
@@ -50,9 +46,9 @@ include './template/navigation.php';
 else { 
 $isMobile = false;   //this is a desktop site
 ?><!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
- <meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+ <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
  <title><?php 
 if($isFrontPage) {
  echo 'Scarlett compass Home page';
@@ -61,16 +57,16 @@ else {
  echo $page_title;
 }
 ?></title>
-<link rel=stylesheet type="text/css" href="./design.css">
+<link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN?>design.css">
 </head>
 <body>
 <div id="wrapper">
-<div id="topper"><IMG SRC="./assets/simple.png" alt="Site header"></div>
+<div id="topper"><IMG SRC="<?php echo $MAIN_DOMAIN?>assets/simple.png" alt="Site header"></div>
 <?php 
 // global $isFrontPage;
  if($isFrontPage==True) { 
   include 'template/promo_selector.php';
-  echo "<br clear=left>\n";
+  echo "<br class=\"clearLeft\">\n";
  }
  if($isUserPage == True) {
    include 'template/navigation.php';
