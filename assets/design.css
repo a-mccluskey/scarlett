@@ -84,6 +84,15 @@ figure {
   margin-left: 0px;
   margin-right: 0px;
 }
+td {
+ vertical-align: top;
+}
 br.clearLeft {
-clear:left;
+ clear:left;
+}
+div.GalleryPreviewImg {
+ display: flex;
+ justify-content: center;
+ background-color:#FDE;
+ height:230px;
 }

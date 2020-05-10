@@ -75,3 +75,24 @@ nav a {
  color: #FFF;
  text-decoration:none;
 }
+figure {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+td {
+ vertical-align: top;
+}
+br.clearLeft {
+ clear:left;
+}
+.galleryPreview {
+ width:300px;
+}
+div.GalleryPreviewImg {
+ display: flex;
+ justify-content: center;
+ background-color:#FDE;
+ height:230px;
+}
