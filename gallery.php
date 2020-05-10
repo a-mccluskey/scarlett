@@ -140,7 +140,7 @@ error_reporting(E_ALL);*/
  $array_size=$i;
  //ammount of albums
 
- gallery_listing($array_size, $album_data, false);
+ gallery_listing($array_size, $album_data, $MAIN_DOMAIN);
 
  echo "</div>";
 } //end displaying list of galleries
