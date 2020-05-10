@@ -19,13 +19,13 @@ p {
  color:#FFF;
  font-weight:bold;
 }
-#promo_item {
+.promo_item {
  float: left;
  text-align: center;
  display: block;
  margin-left: 25px;
 }
-#promo_item a {
+.promo_item a {
  color: #FFF;
  text-decoration:none;
 }
@@ -56,6 +56,12 @@ img {
  border: 0px;
  margin: 2px;
 }
+.centre {
+//    display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width;
+}
 table {
  margin: 50px;
 }
@@ -71,4 +77,13 @@ nav a {
 }
 wrapper a {
  color: #00F;
+}
+figure {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+br.clearLeft {
+clear:left;
 }
