@@ -12,6 +12,7 @@ function getVar($key) {
 This page contains all the database functions to get called so that they can neatly be contained into one page.
 */
  require_once('../config.php');
+ require_once('../function.php');
  $isFrontPage = False;
 
  //Do we want the user/article naviagtion structure
@@ -541,10 +542,41 @@ case "delete_flash";
 */ 
 
 break;//delete_flash
+case "add_redir";
+/*
++-----------------------------------------------+
+|			Add redirection
+|
++-----------------------------------------------+
+*/ 
+$link = connectToAWDB();
+$URL = mysqli_real_escape_string($link, $_REQUEST["redir_url"]);
+$validGuid = false;
+$attemptCounter = 0;
+while(!$validGuid && $attemptCounter <=5)
+{
+  $guid = gen_guid(); //from functions.php
+  $check_guid_exists_sql = "SELECT * FROM sc_redirect WHERE redirect_guid = '$guid'";
+  $result= dbQuery($check_guid_exists_sql, $link);
+  if(is_null(mysqli_fetch_array($result, MYSQLI_ASSOC)))
+    $validGuid = true;
+
+  $attemptCounter++;
+}
+//check that the guid doesn't exist
+//if it does attempt 5 times
+$insert_redirURL_sql = "INSERT INTO sc_redirect (redirect_guid, redirect_url) VALUES ('$guid', '$URL')";
+$result = dbQuery($insert_redirURL_sql, $link);
+disconnectAWDB($link);
+echo "Redirect added successfully<br>";
+echo "Link is: <br><code>r.php?loc=" . $guid . "</code><br>";
+break;
  default:
   echo "illegal file access";
   //okay, should also just redirect to the front page.
   } 
+
+  
   ?>
 </p>
 </div>
