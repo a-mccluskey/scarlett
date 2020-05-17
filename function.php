@@ -8,6 +8,16 @@
    echo " <td><a href=\"gallery.php?img=".$i."\"><img src=render.php?id=".$i."&s=p></a></td>";
  }//output cell
 
+ function gen_guid($len = 4)
+  {
+    $allowedChars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $outputString = '';
+    for ($i=0;$i<$len;$i++)
+    {
+      $outputString .= $allowedChars[rand(0, strlen($allowedChars)-1)];
+    }
+    return $outputString;
+  }
  
  function make_table($max_size, $image_number) { 
   global $isMobile;
