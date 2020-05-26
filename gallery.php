@@ -49,7 +49,7 @@ error_reporting(E_ALL);*/
 	    echo "</a></p>\n<br>";
       echo "<a href=\"render.php?id=".$image_ID."&s=e\">";
       echo "<img src=\"render.php?id=" . $image_ID ."&s=r\"></a>\n<br>\n<br> "; 
-	  echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n<br>";
+	  echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n";
 	  }//if is viewable
     //check for image existing, check that the album is published
     //should only display one image
@@ -67,9 +67,15 @@ error_reporting(E_ALL);*/
   $result = dbQuery($is_album_public_query, $link);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   if($row['album_public']==TRUE) { 
-    if(is_numeric($image_ID) != 1) {
+    if(is_numeric($image_ID) != 1) //If we're given an albumID but not an image ID
+    {
+      //display a little navigation, WITHOUT a link to the front of the album(as the gallery is displayed below)
       echo " -> <a href=\"gallery.php\">Gallery</a> -> ".$row['album_name']."<p>"; 
-      //display a little navigation
+
+      //Increase the album view count 
+      //This is the only part where the album will be generated but an image ID is not set
+      //This line should be missing from the admin's gallery, as we dont need to increase the album view count then
+      dbQuery("UPDATE sc_album_details SET alb_views = alb_views + 1 WHERE album_id = '$album_ID'", $link);
     }
 
     $gallery_browser = FALSE; //We dont want the gallery displaying at the end of the album
@@ -102,9 +108,6 @@ error_reporting(E_ALL);*/
       $gallery_browser = TRUE; } // if not public then display the list of albums
  }
 
-
- 
-
  //If neither of the two are a number, or the number is invalid, then
  //display the selection of galleries
 
@@ -122,8 +125,6 @@ error_reporting(E_ALL);*/
  $result= dbQuery($sql, $link);
  //Get all album details, that are public
 
-
-
  $album_data = array();
  $i=0;
  while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
@@ -135,7 +136,7 @@ error_reporting(E_ALL);*/
    $album_data[$i][3] = $row['album_img_count'];
    $album_data[$i][4] = $row['album_thumb'];
    $album_data[$i][5] = $row['img_preview_filename'];
- } //Should be simple enough
+ } //populate a 2D array of all the album headers
  disconnectAWDB($link);
  $array_size=$i;
  //ammount of albums
