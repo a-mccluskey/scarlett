@@ -57,9 +57,12 @@
          $col = 1;
 		}//if column is greater than number of allowable columns
 	echo '<td class="galleryPreview"><a href="./gallery.php?img='.$image_number[$i].'"><div class="GalleryPreviewImg"><img src='.$MAIN_DOMAIN.'render.php?id='.$image_number[$i].'&s=p class=\"galleryPreview\"></div></a>';
-	$result = dbQuery("SELECT img_file_title, img_description FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
+	$result = dbQuery("SELECT img_file_title, img_description, img_main_views, img_fullsize_views FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo " <figcaption>".$row['img_file_title']."</figcaption><br> ".$row['img_description']."</td>";
+    echo " <figcaption>".$row['img_file_title']."</figcaption><br> ".$row['img_description']."<br>\n";
+    echo "Regular Views: ".$row['img_main_views']."<br>";
+    echo "Extended Views: ".$row['img_fullsize_views']."<br>";
+    echo "</td>";
     $i++; 
     $col++; 
     }
