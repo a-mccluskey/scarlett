@@ -43,6 +43,7 @@ require_once('../config.php');
   $alb_date = "AlbDate";
   $alb_img_count = "AlbCount";
   $alb_thumb = "AlbThumb";
+  $alb_views = "AlbViews";
 
  //get the list of pages here...
 
@@ -57,13 +58,13 @@ require_once('../config.php');
  $alb_data[$i][$alb_date] = $row['album_date'];
  $alb_data[$i][$alb_img_count] = $row['album_img_count']; 
  $alb_data[$i][$alb_thumb] = $row['album_thumb']; 
+ $alb_data[$i][$alb_views] = $row['alb_views']; 
  $i++; 
  }
  $i--;
  
-
  echo "<table border=1><tr><td>Album ID</td><td>Album Title</td><td>Published</td>";
- echo "<td>Date</td><td>Images</td><td>thumbnail</td></tr>\n\n";
+ echo "<td>Date</td><td>Images</td><td>Thumbnail</td><td>Views</td></tr>\n\n";
 
  //loop the list of pages
  for ($j=0; $j<=$i; $j++) {
@@ -72,13 +73,11 @@ require_once('../config.php');
     echo "<td>".$alb_data[$j][$alb_public]."</td>\n";
     echo "<td>".$alb_data[$j][$alb_date]."</td>";
     echo "<td>".$alb_data[$j][$alb_img_count]."</td>";
-    echo "<td>".$alb_data[$j][$alb_thumb]."</td>\n";
+    echo "<td>".$alb_data[$j][$alb_thumb]."</td>";
+    echo "<td>".$alb_data[$j][$alb_views]."</td>\n";
     echo "</tr>\n\n";   }
  echo "\n </table>";
  }//invalidAlbID
 disconnectAWDB($link);
-?>
-</p>
-</div>
-</BODY>
-</HTML>
+?></p>
+</div></body></html>

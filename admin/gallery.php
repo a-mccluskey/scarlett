@@ -37,14 +37,16 @@ include('session.php');
  if(is_numeric($album_ID)==1)
  { //We are looking at an album only
   $link = connectToAWDB();
-  $is_album_public_query = "SELECT album_public, album_name FROM sc_album_details WHERE album_id='$album_ID'";
+  $is_album_public_query = "SELECT album_public, album_name, alb_views FROM sc_album_details WHERE album_id='$album_ID'";
   //check if the album can be viewable - some albums are not finished yet so don't show
   //was having difficulty doing this in one statement...
   $result = dbQuery($is_album_public_query, $link);
   $row = mysqli_fetch_array($result);
-  echo " -> <a href=\"gallery.php\">Gallery</a> -> ".$row['album_name']."<p>"; 
+  echo " -> <a href=\"gallery.php\">Gallery</a> -> ".$row['album_name']."<br>"; 
   //display a little navigation
+  echo "<i>Album has been viewed ".$row['alb_views']." times</i><p>";
   $gallery_browser = FALSE; //We dont want the gallery displaying at the end of the album
+
   $get_all_album_images =  "SELECT * FROM sc_image_details WHERE img_in_album='$album_ID'";
   //get the list of images assosiated with this album
   $result = dbQuery($get_all_album_images, $link);
@@ -76,15 +78,17 @@ include('session.php');
     $row = mysqli_fetch_array($result);
     disconnectAWDB($link);
  
-      $gallery_browser = FALSE;
-      echo " -> <a href=\"gallery.php\">Gallery</a> ->";
-      echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
+    $gallery_browser = FALSE;
+    echo " -> <a href=\"gallery.php\">Gallery</a> ->";
+    echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
 	  echo alb_id_to_name($row['img_in_album']);
 	  echo "</a></p>\n<br>";
-      echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=e">';
-      echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=r">';
+    echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=e">';
+    echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=r">';
 	  echo "</a>\n<br>\n<br>"; 
-	  echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n<br>";
+    echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>";
+    echo "Regular Views: ".$row['img_main_views']."<br>\n";
+    echo "Extended Views: ".$row['img_fullsize_views']."<br><br>\n";
 	  
     //check for image existing, check that the album is published
     //should only display one image
@@ -122,6 +126,7 @@ include('session.php');
    $album_data[$i][3] = $row['album_img_count'];
    $album_data[$i][4] = $row['album_thumb'];
    $album_data[$i][5] = $row['img_preview_filename'];
+   $album_data[$i][6] = $row['alb_views'];
  } //Should be simple enough
  disconnectAWDB($link);
  $array_size=$i;
