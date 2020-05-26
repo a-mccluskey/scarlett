@@ -13,7 +13,6 @@ include('session.php');
 //Get the relevent article details from the database
 //If it's a real ID create the page
 
-
   //connect to mysql database
   require_once('../config.php');
 
@@ -26,6 +25,7 @@ while($row = mysqli_fetch_array($result))
  $page_published = $row['art_published'];
  $page_created = $row['art_created'];
  $page_updated = $row['art_updated'];
+ $page_views = $row['art_views'];
 }
  disconnectAWDB($link);
  //The public facing page checks if the page is published, this is an admin preview, we don't care!
@@ -33,14 +33,10 @@ while($row = mysqli_fetch_array($result))
  include('../template/index.php');
  //After the header, let the user know if the page is live or not.
  if($page_published == 1)
-   { echo "<i>This page is published</i>"; }
-   else { echo "<i>This page is <b>NOT</b> published</i>"; }
+   { echo "<i>This page is published. And has been viewed ".$page_views." times</i>"; }
+   else { echo "<i>This page is <b>NOT</b> published And has been viewed ".$page_views." times</i>"; }
  echo '<h1>'.$page_title."</h1>\n";
  echo $page_content;
  echo "\n<p>This is a preview of: ".$article_ID."</p>\n";
-
-
 ?>
-</div>
-</BODY>
-</HTML>
+</div></body></html>

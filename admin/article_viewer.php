@@ -19,6 +19,7 @@ include('session.php');
   $page_isPublished = "PagePublished";
   $page_created = "PageCreated";
   $page_updated = "PageUpdated";
+  $page_views = "PageViews";
 
  //get the list of pages here...
   //connect to mysql database
@@ -37,6 +38,7 @@ $link=connectToAWDB();
  $page_data[$i][$page_isPublished] = $row['art_published'];
  $page_data[$i][$page_created] = $row['art_created'];
  $page_data[$i][$page_updated] = $row['art_updated'];
+ $page_data[$i][$page_views] = $row['art_views'];
  $i++;
  }
  disconnectAWDB($link);
@@ -50,7 +52,7 @@ $link=connectToAWDB();
 
 
  echo "<table border=1><tr><td>Page ID</td><td>Page Title</td><td>Created</td>
-<td>Updated</td><td>Published</td><td>View Page</td></tr>\n\n";
+<td>Updated</td><td>Published</td><td>Preview Link</td><td>View Count</td></tr>\n\n";
 
 
 
@@ -61,7 +63,8 @@ $link=connectToAWDB();
     echo "<td>".$page_data[$j][$page_created]."</td>\n";
     echo "<td>".$page_data[$j][$page_updated]."</td>";
     echo "<td>".$page_data[$j][$page_isPublished]."</td>";
-    echo "<td><a href=\"article.php?id=".$page_data[$j][$page_id]."\">VIEW PREVIEW</a></td></tr>\n\n";
+    echo "<td><a href=\"article.php?id=".$page_data[$j][$page_id]."\">PREVIEW</a></td>";
+    echo "<td>".$page_data[$j][$page_views]." Views</td></tr>\n\n";
    }
 
  echo "\n </table>";
