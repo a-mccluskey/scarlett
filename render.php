@@ -6,7 +6,7 @@
 
  //this page is supplied with the argurment of an image number we need to get it.
  $image_ID = $_GET['id'];
- $image_SIZE = $_GET['s']; //We will use this later
+ $image_SIZE = $_GET['s']; //Image Size
 
  //Prevent any SQL injection, by checking if the arguement is a number, and that the size is an acceptable format
  if(is_numeric($image_ID)==1 AND ($image_SIZE=="p" OR $image_SIZE=="r" OR $image_SIZE=="e") )
@@ -14,8 +14,6 @@
  //connect to the database - We are now sure that the image is acceptable
 
  $link = connectToAWDB();
-
-
   //at this point we know that the argument is a number, but we don't know whether that image exists or anything else about it.
   $result= dbQuery("SELECT * FROM sc_image_details WHERE img_file_id = '$image_ID'", $link);
   //there is only one img file id, as its a primary key
@@ -25,12 +23,23 @@
    $img_expanded_url = $row['img_fullsize_filename'];
 
   if($image_SIZE=="p") { displayImage($img_preview_url); }
-  if($image_SIZE=="r") { displayImage($img_regular_url); }
-  if($image_SIZE=="e") { displayImage($img_expanded_url); }
+  if($image_SIZE=="r") { 
+    displayImage($img_regular_url); 
+    if(strpos($_SERVER['HTTP_REFERER'], 'admin') === false) //if referer does not contain admin
+    {
+      dbQuery("UPDATE sc_image_details SET img_main_views = img_main_views + 1 WHERE img_file_id = '$image_ID'",$link);
+    }//if Referer does not contain admin
+  }
+  if($image_SIZE=="e") { 
+    displayImage($img_expanded_url);
+    if(strpos($_SERVER['HTTP_REFERER'], 'admin') === false) //if referer does not contain admin
+    {
+      dbQuery("UPDATE sc_image_details SET img_fullsize_views = img_fullsize_views + 1 WHERE img_file_id = '$image_ID'",$link);
+    }//if Referer does not contain admin
+  }
  }
  else { displayImage("assets/not_found.png"); } //end if database connection failed
  disconnectAWDB($link);
-
 
 }
 else 

@@ -23,10 +23,11 @@
   $Link_Guid = mysqli_real_escape_string($link, $Link_Guid);
 
   //get the url from the DB
-  $result = dbQuery("SELECT redirect_URL FROM sc_redirect WHERE redirect_guid = '$Link_Guid'", $link);
+  $result = dbQuery("SELECT redirect_URL FROM sc_redirect WHERE redirect_guid = '$Link_Guid' LIMIT 1", $link);
   while($row = mysqli_fetch_assoc($result))
   {
    $URL = $row['redirect_URL'];
+   dbQuery("UPDATE sc_redirect SET redirect_hits = redirect_hits + 1 WHERE redirect_guid = '$Link_Guid'", $link);
   }
   disconnectAWDB($link);
   

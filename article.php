@@ -44,6 +44,9 @@
   //a none existant id is supplied
   if($page_published == 1)
   {
+    //increase the page view count
+    dbQuery("UPDATE sc_articles SET art_views = art_views + 1 WHERE art_id = '$article_ID'",$link);
+
    //variable $page_title is used to create the html title and then the h1 formatted element.
    include('template/index.php');
    echo '<h1>'.$page_title."</h1>\n";
