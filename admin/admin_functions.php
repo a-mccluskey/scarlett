@@ -513,7 +513,7 @@ case "add_flash";
   {
     echo "Text or location are blank";
   }
-    else
+  else
   {
     $sql_statement = "INSERT INTO sc_tweets (t_text, t_location, t_datetime) VALUES ('$flash_text', '$flash_location', '$flash_date')";
     $result= dbQuery($sql_statement, $link);
@@ -531,6 +531,27 @@ case "edit_flash";
 |
 +-----------------------------------------------+
 */ 
+  if(!is_null($_GET['id']))
+  {
+    $updateID = $_GET['id'];
+    $link = connectToAWDB();
+    $flash_text = mysqli_real_escape_string($link, $_REQUEST["flash_text"]);
+    $flash_location= mysqli_real_escape_string($link, $_REQUEST["flash_location"]);
+    if($flash_text == "" || $flash_location=="")
+    {
+      echo "Text or location are blank";
+    }
+    else
+    {
+      $sql_statement = "UPDATE sc_tweets SET t_text = '$flash_text', t_location = '$flash_location' WHERE t_id = '$updateID'";
+      $result= dbQuery($sql_statement, $link);
+      echo "Updated flash update : ".$flash_text;
+    }
+  
+    disconnectAWDB($link);
+  }
+  else
+    echo "id is not supplied.";
 
 break;//edit_flash
 case "delete_flash";
@@ -541,6 +562,45 @@ case "delete_flash";
 +-----------------------------------------------+
 */ 
 
+if(is_numeric($_GET["id"])==1) 
+{
+  //rather than just blindly delete an article - we do an "are you sure?"
+  $areYouSure=$_GET["verify"];
+  if($areYouSure == True) 
+  {
+    //connect to mysql database
+    $link=connectToAWDB();
+    
+    //charset+escape chars
+    //we already know that "id" is a number so dont worry about it
+    $del_id = mysqli_real_escape_string($link, $_GET["id"]);
+
+    //prepare the statement
+    $sql_statement = "DELETE FROM sc_tweets WHERE t_id = '$del_id'";
+
+    //run the statement 
+    dbQuery($sql_statement, $link);
+    //done
+    disconnectAWDB($link);
+    echo "Deleted update ". $del_id;
+  } //end $areyousure == True
+  else 
+  {
+    //user is not sure/not been prompted...
+    //output are they sure, okay not elegant but it works
+    echo "<p>Are you sure that you would like to delete article: "; 
+    echo $_GET["id"] . " ? note that this is permenant, consider unpublishing instead</p>\n<p>";
+    echo '<a href="admin_functions.php?func=delete_flash&id=';
+    echo $_GET["id"]."&verify=True";
+    echo '"><b>YES</b></a>(delete now) or <a href="."><b>NO</b></a>(return to main menu)';
+  } //end are your sure == False
+} //end is a number = True
+else 
+{
+  //if the argument isn't a number, then chances are it's a poorly 
+  //setup link, or more likely an attempt to do SQL injection
+  echo "ERROR: Please check that the article id is correct"; 
+} //end is a number = false
 break;//delete_flash
 case "add_redir";
 /*
