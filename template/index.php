@@ -15,17 +15,8 @@ else {
 } 
 ?></title>
 <link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN; ?>assets/mobile.css">
-<script type="text/javascript">
-<!--    
-function toggle_visibility(id) {
- var e = document.getElementById(id);
- if(e.style.display == 'block')
-   e.style.display = 'none';
- else
-  e.style.display = 'block';
- }
--->
-</script>
+<link rel="shortcut icon" href="<?php echo $MAIN_DOMAIN; ?>assets/favicon.ico">
+<script type="text/javascript" src="<?php echo $MAIN_DOMAIN; ?>assets/sc.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -57,11 +48,13 @@ else {
  echo $page_title;
 }
 ?></title>
-<link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN?>design.css">
+<link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN; ?>assets/design.css">
+<link rel="shortcut icon" href="<?php echo $MAIN_DOMAIN; ?>assets/favicon.ico">
+<script type="text/javascript" src="<?php echo $MAIN_DOMAIN; ?>assets/sc.js"></script>
 </head>
 <body>
 <div id="wrapper">
-<div id="topper"><IMG SRC="<?php echo $MAIN_DOMAIN?>assets/simple.png" alt="Site header"></div>
+<div id="topper"><IMG SRC="<?php echo $MAIN_DOMAIN; ?>assets/simple.png" alt="Site header"></div>
 <?php 
 // global $isFrontPage;
  if($isFrontPage==True) { 
