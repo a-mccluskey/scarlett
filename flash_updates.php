@@ -33,9 +33,10 @@ if($_GET["page"]>0 && is_numeric($_GET["page"]))
   $minUpdate = $maxUpdate*$_GET["page"];
   $maxUpdate += $minUpdate;
 }
+$UpdatesToDisplay = $maxUpdate - $minUpdate;
 
 $sql_update = "SELECT t_text, t_location, t_datetime FROM sc_tweets ORDER BY t_datetime DESC ";
-$sql_update .= "LIMIT $minUpdate, $maxUpdate";
+$sql_update .= "LIMIT $minUpdate, $UpdatesToDisplay";
 $update_result = dbQuery($sql_update, $link);
 
 echo "<h1>Flash updates archive</h1><p>";
