@@ -16,6 +16,7 @@ else {
 ?></title>
 <link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN; ?>assets/mobile.css">
 <link rel="shortcut icon" href="<?php echo $MAIN_DOMAIN; ?>assets/favicon.ico">
+<link rel="apple-touch-icon" href="<?php echo $MAIN_DOMAIN; ?>assets/apple-touch.png"/>
 <script type="text/javascript" src="<?php echo $MAIN_DOMAIN; ?>assets/sc.js"></script>
 </head>
 <body>
