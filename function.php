@@ -29,13 +29,13 @@
   echo "<table>\n <tr>";
     while($i<=$max_size) {
         if($col>$cols) {
-         echo "</tr>\n\n <tr>";
+         echo "</tr>\n\n<tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
     $result = dbQuery("SELECT img_file_title, img_description, img_in_album FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo "<td class=\"galleryPreview\"><a href=\"gallery.php?img=".$image_number[$i]."&alb=".$row['img_in_album']."\"><div class=\"GalleryPreviewImg\"><img src=render.php?id=".$image_number[$i]."&s=p class=\"galleryPreview\"></div></a>";
-    echo " <figcaption>".$row['img_file_title']."</figcaption><br> ".$row['img_description']."</td>";
+    echo "<td class=\"galleryPreview\"><a href=\"gallery.php?img=".$image_number[$i]."&amp;alb=".$row['img_in_album']."\"><div class=\"GalleryPreviewImg\"><img src=render.php?id=".$image_number[$i]."&amp;s=p class=\"galleryPreview\"></div></a>";
+    echo "<figcaption>".$row['img_file_title']."</figcaption><br>".$row['img_description']."</td>";
     $i++; 
     $col++; 
     }
@@ -50,19 +50,19 @@
   $i=1;
   $col=1;
   $link2=connectToAWDB();
-  echo "<table>\n <tr>";
+  echo "<table>\n<tr>";
     while($i<=$max_size) {
         if($col>$cols) {
-         echo "</tr>\n\n <tr>";
+         echo "</tr>\n\n<tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
-	echo '<td class="galleryPreview"><a href="./gallery.php?img='.$image_number[$i].'"><div class="GalleryPreviewImg"><img src='.$MAIN_DOMAIN.'render.php?id='.$image_number[$i].'&s=p class=\"galleryPreview\"></div></a>';
+	echo '<td class="galleryPreview"><a href="./gallery.php?img='.$image_number[$i].'"><div class="GalleryPreviewImg"><img src='.$MAIN_DOMAIN.'render.php?id='.$image_number[$i].'&amp;s=p class="galleryPreview"></div></a>';
 	$result = dbQuery("SELECT img_file_title, img_description, img_main_views, img_fullsize_views FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo " <figcaption>".$row['img_file_title']."</figcaption><br> ".$row['img_description']."<br>\n";
-    echo "Regular Views: ".$row['img_main_views']."<br>";
+    echo "<figcaption>".$row['img_file_title']."</figcaption><br>".$row['img_description']."<br>\n";
+    echo "Regular Views: ".$row['img_main_views']."<br>\n";
     echo "Extended Views: ".$row['img_fullsize_views']."<br>";
-    echo "</td>";
+    echo "</td>\n";
     $i++; 
     $col++; 
     }
@@ -107,7 +107,7 @@
   echo "<table>\n\n <tr>";
     while($i<=$max) {
         if($col>$cols) {
-         echo "</tr>\n\n\n <tr>";
+         echo "</tr>\n\n\n<tr>";
          $col = 1;
 		}//if column is greater than number of allowable columns
 	echo "<td class=\"galleryPreview\"><a href=\"gallery.php?alb=".$img_data[$i][0]."\"><div class=\"GalleryPreviewImg\"><img src=".$MAIN_DOMAIN.$img_data[$i][5]."  class=\"galleryPreview\"></div></a>\n";

@@ -47,8 +47,8 @@ error_reporting(E_ALL);*/
       echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
 	    echo alb_id_to_name($row['img_in_album']);
 	    echo "</a></p>\n<br>";
-      echo "<a href=\"render.php?id=".$image_ID."&s=e\">";
-      echo "<img src=\"render.php?id=" . $image_ID ."&s=r\"></a>\n<br>\n<br> "; 
+      echo "<a href=\"render.php?id=".$image_ID."&amp;s=e\">";
+      echo "<img src=\"render.php?id=" . $image_ID ."&amp;s=r\"></a>\n<br>\n<br> "; 
 	  echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n";
 	  }//if is viewable
     //check for image existing, check that the album is published

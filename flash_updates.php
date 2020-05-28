@@ -50,7 +50,7 @@ while($row=mysqli_fetch_array($update_result, MYSQLI_ASSOC)) {
   echo $date." - ".$row['t_text'].  "\n <i>Posted from: <b>".$row['t_location']. "</b></i><br>\n";
   }
   disconnectAWDB($link);
-  echo "</p>\n<p>";
+  echo "</p>\n";
   
   /* if we're on page 0 and there are 150 updates, we need to display a link to the next page
   *  if we're on page 1(or more) then we need to display
@@ -61,8 +61,6 @@ while($row=mysqli_fetch_array($update_result, MYSQLI_ASSOC)) {
     echo " : ";
   if($maxUpdate <= $Total_No_of_updates)
     echo "<a href=\"flash_updates.php?page=".($_GET["page"]+1)."\">Next Page</a>";
-
-  echo "</p>";
 ?>
 </div>
 </body>
