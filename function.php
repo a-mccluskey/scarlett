@@ -26,19 +26,27 @@
   $i=1;
   $col=1;
   $link2=connectToAWDB();
-  echo "<table>\n <tr>";
-    while($i<=$max_size) {
-        if($col>$cols) {
-         echo "</tr>\n\n<tr>";
-         $col = 1;
+  echo "<table>\n<tr>";
+  while($i<=$max_size) 
+  {
+    if($col>$cols) 
+    {
+      echo "</tr>\n\n<tr>";
+      $col = 1;
 		}//if column is greater than number of allowable columns
     $result = dbQuery("SELECT img_file_title, img_description, img_in_album FROM sc_image_details WHERE img_file_id='$image_number[$i]'", $link2);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo "<td class=\"galleryPreview\"><a href=\"gallery.php?img=".$image_number[$i]."&amp;alb=".$row['img_in_album']."\"><div class=\"GalleryPreviewImg\"><img src=render.php?id=".$image_number[$i]."&amp;s=p class=\"galleryPreview\"></div></a>";
-    echo "<figcaption>".$row['img_file_title']."</figcaption><br>".$row['img_description']."</td>";
+    echo "<td class=\"galleryPreview\"><a href=\"gallery.php?img=".$image_number[$i]."&amp;alb=".$row['img_in_album']."\" class=\"caption\">";
+    echo "<figure><div class=\"GalleryPreviewImg\">\n<img src=\"render.php?id=".$image_number[$i]."&amp;s=p\" class=\"galleryPreview\" alt=\"".$row['img_file_title']."\"></div>";
+    echo "<figcaption>".$row['img_file_title']."</figcaption></figure></a><br>".$row['img_description']."</td>\n";
     $i++; 
     $col++; 
-    }
+  }
+  while($col <= $cols)
+  {
+    echo "<td><!-- BLANK CELL--></td>\n";
+    $col++;
+  }
   disconnectAWDB($link2);
   echo "</tr>\n</table>";
  }//make_table
@@ -105,16 +113,24 @@
   $i=1;
   $col=1;
   echo "<table>\n\n <tr>";
-    while($i<=$max) {
-        if($col>$cols) {
-         echo "</tr>\n\n\n<tr>";
-         $col = 1;
-		}//if column is greater than number of allowable columns
-	echo "<td class=\"galleryPreview\"><a href=\"gallery.php?alb=".$img_data[$i][0]."\"><div class=\"GalleryPreviewImg\"><img src=".$MAIN_DOMAIN.$img_data[$i][5]."  class=\"galleryPreview\"></div></a>\n";
-    echo " <figcaption>" . $img_data[$i][1] . "</figcaption><br> " . $img_data[$i][2] . " - <i>" . $img_data[$i][3] . " images</i></td>\n";
-    $i++; 
-    $col++; 
-    }
+  while($i<=$max) 
+  {
+    if($col>$cols) 
+    {
+      echo "</tr>\n\n\n<tr>";
+      $col = 1;
+	  }//if column is greater than number of allowable columns
+  echo "<td class=\"galleryPreview\"><a href=\"gallery.php?alb=".$img_data[$i][0]."\" class=\"caption\"><figure><div class=\"GalleryPreviewImg\">";
+  echo "<img src=".$MAIN_DOMAIN.$img_data[$i][5]."  class=\"galleryPreview\" alt=\"".$img_data[$i][1]."\"></div>\n";
+  echo " <figcaption>" . $img_data[$i][1] . "</figcaption></figure></a><br> " . $img_data[$i][2] . " - <i>" . $img_data[$i][3] . " images</i></td>\n";
+  $i++; 
+  $col++; 
+  }
+  while($col <= $cols)
+  {
+    echo "<td><!-- BLANK CELL--></td>\n";
+    $col++;
+  }
   echo "</tr>\n</table>";
  }//gallery_listing
 
