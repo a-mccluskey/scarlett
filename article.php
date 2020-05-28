@@ -52,9 +52,9 @@
    echo '<h1>'.$page_title."</h1>\n";
    //after this is done the main guts of the page is outputted.
    //lets assume that the user has done all this properly
-   echo $page_content;
+   echo $page_content. "<br>";
    //finally lets output some rendering details, for debugging purposes
-   echo '<p>Article Number: '.$article_ID.';<br>'.$page_title."</p>\n";
+   //echo '<p>Article Number: '.$article_ID.';<br>'.$page_title."</p>\n";
   }
   else 
   { header('Location: .'); }
@@ -67,7 +67,5 @@
 else 
 { //if the argument isn't a number, then chances are it's a poorly setup link, or more likely an attempt to do SQL injection
   header('Location: .'); }
-?>
-</div>
-</body>
-</html>
+?></div>
+</body></html>
