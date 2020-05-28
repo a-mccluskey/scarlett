@@ -36,18 +36,18 @@ while($row = mysqli_fetch_array($result))
  $imageData[$i][$img_id] = $row['img_id'];
  $i++;
 }
-echo '<table border="1"><tr>';
-echo '<td>Image Preview</td><td> Image Location </td>';
-echo "<td>Description</td><td>Image URL Link</td>";
-echo "<td>EDIT</td></tr>\n\n";
+echo '<table class="b1"><tr>';
+echo '<th class="b1">Image Preview</th><th> Image Location </th>';
+echo "<th class=\"b1\">Description</th><th>Image URL Link</th>";
+echo "<th class=\"b1\">EDIT</th></tr>\n\n";
 $j=0;
 while($j<$i)
 {
- echo ' <tr><td><img src="'.$MAIN_DOMAIN.'promo/' . $imageData[$j][$image_location] . '.jpg"></td>';
- echo '<td>/promo/' . $imageData[$j][$image_location] . '.jpg</td>';
- echo '<td>' . $imageData[$j][$image_description] . "</td>\n  ";
- echo '<td>' . $imageData[$j][$image_linkTo] . '</td>';
- echo '<td><a href="promo_edit.php?id='. $imageData[$j][$img_id] .'">[EDIT]</a></td>';
+ echo '<tr><td class="b1"><img src="'.$MAIN_DOMAIN.'promo/' . $imageData[$j][$image_location] . '.jpg"></td>';
+ echo '<td class="b1"><code>/promo/' . $imageData[$j][$image_location] . '.jpg</code></td>';
+ echo '<td class="b1">' . $imageData[$j][$image_description] . "</td>\n  ";
+ echo '<td class="b1"><code>' . $imageData[$j][$image_linkTo] . '</code></td>';
+ echo '<td class="b1"><a href="promo_edit.php?id='. $imageData[$j][$img_id] .'">[EDIT]</a></td>';
  echo "</tr> \n\n";
  $j++;
 }

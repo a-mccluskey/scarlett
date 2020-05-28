@@ -48,7 +48,7 @@ Also some description. Ideally should be a lighter weight than the content pages
 </p></td></tr></table>
 
 <a href="#" onclick="toggle_visibility('site_struct');" style="color: black; text-decoration: none;"><h2>Site Structure</h2></a>
-<table id="site_struct" style="display: block;"><tr><td style="width:50%;"><h3>Promo banner manager</h3>
+<table id="site_struct" style="display: block; border: 0px;"><tr><td style="width:50%;"><h3>Promo banner manager</h3>
 <p>Image and links for the promotion banner at the top of the home page.</p><p>
 * <a href="promo_adder.php">Add item to promo banner</a><br>
 * <a href="promo_deleter.php">Remove items from promo banner</a><br>
@@ -63,7 +63,9 @@ Also some description. Ideally should be a lighter weight than the content pages
 <p>Redirection links</p><p>
 * <a href="redir_add.php">Add</a><br>
 * <a href="redir_view.php">View Redirections</a><br>
-</p></td></tr>
+</p></td>
+<td><!-- Intentionally Blank--></td>
+</tr>
 </table>
 </div>
 </body>

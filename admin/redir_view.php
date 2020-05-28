@@ -10,9 +10,11 @@
 
   $page_title = "Admin: View The redirection Links";
   include '../template/index.php';
-  echo "<h1>".$page_title."</h1>\n";
+  echo "<h1>Site Structure</h1>\n";
+  echo "<h2>Redirect manager</h2>\n";
+  echo "<h3>View The redirection Links</h3>\n";
   echo "<p>List of all the redirection links and their hit count\n<br>";
-  echo "Note: There is no option to remove or edit link, please <a href=\"redir_add.php\">just create a new one</a>.</p>";
+  echo "Note: <i>There is no option to remove or edit link, please <a href=\"redir_add.php\">just create a new one</a></i>.</p>\n";
 
   $redir_guid = "RedirGUID";
   $redir_URL = "RedirURL";
@@ -34,15 +36,15 @@
  }
  disconnectAWDB($link);
  $i--;
- echo "<table border=1><tr><td>Code</td><td>Redirect URL</td><td>Copy this for the link</td><td>Hits</td></tr>\n\n";
+ echo "<table class=\"b1\"><tr><th class=\"b1\">Code</th><th class=\"b1\">Redirect URL</th><th class=\"b1\">Copy this for the link</th><th class=\"b1\">Hits</th></tr>\n\n";
 
  //loop the list of pages
  for ($j=0; $j<=$i; $j++) {
-    echo "<tr><td>".$redir_data[$j][$redir_guid]."</td>";
-    echo "<td><a href=\"article_edit.php?id=".$redir_data[$j][$redir_URL].'">' .$redir_data[$j][$redir_URL]."</a></td>";
-    echo "<td><code>".$MAIN_DOMAIN."r.php?loc=".$redir_data[$j][$redir_guid]."</code></td>";
-    echo "<td>".$redir_data[$j][$redir_views]." Hits</td></tr>\n\n";
+    echo "<tr><td class=\"b1\">".$redir_data[$j][$redir_guid]."</td>";
+    echo "<td class=\"b1\"><a href=\"article_edit.php?id=".$redir_data[$j][$redir_URL].'">' .$redir_data[$j][$redir_URL]."</a></td>";
+    echo "<td class=\"b1\"><code>".$MAIN_DOMAIN."r.php?loc=".$redir_data[$j][$redir_guid]."</code></td>";
+    echo "<td class=\"b1\">".$redir_data[$j][$redir_views]." Hits</td></tr>\n\n";
    }
- echo "\n </table>";
+ echo "</table>";
 ?></div>
 </body></html>

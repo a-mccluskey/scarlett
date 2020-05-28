@@ -11,12 +11,13 @@ include('session.php');
  $page_title = "Admin: Create New navigation link";
  include '../template/index.php';
 ?>
-<h1>Navigation Manager Viewer</h1>
-<h2>Navigation Link Add</h2>
+<h1>Site Structure</h1>
+<h2>Navigation manager</h2>
+<h3>Navigation Link Add</h3>
 <p>Items added will be at the bottom of the navigation list.</p>
 <form action="admin_functions.php?func=add_navigation" method="post">
 Link text: <input type="text" name="navtext"><br>
-Link To: <input type="text" name="navlink"placeholder="article.php?id="> * Note: Links are restricted to site use only<br>
+Link To: <input type="text" name="navlink"placeholder="article.php?id="> * Note: <i>Links are restricted to site use only</i><br>
 <input type="submit">
 </form></div>
 </body></html>

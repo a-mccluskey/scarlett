@@ -12,10 +12,11 @@ include('session.php');
  include '../template/index.php';
  require_once('../config.php');
 
- echo "<h1>Navigation Manager Viewer</h1>\n";
- echo "<h2>Navigation Link Edit</h2>\n";
+ echo "<h1>Site Structure</h1>\n";
+ echo "<h2>Navigation manager</h2>\n";
+ echo "<h3>Edit / Remove Navigation Links</h3>";
  echo "<p>List of all navigation banner links</p>\n";
- echo "<table border=1><tr><td>Navigation<br> ID</td><td>Navigation Text</td><td>Navigation Link</td><td>Delete</td></tr>\n\n";
+ echo "<table class=\"b1\"><tr><th class=\"b1\">Navigation<br> ID</th><th class=\"b1\">Navigation Text</th><th class=\"b1\">Navigation Link</th><th class=\"b1\">Delete</th></tr>\n\n";
 
 $nav_id = "NavID";
 $nav_link = "NavLink";
@@ -38,10 +39,10 @@ $nav_text = "NavText";
  
   //loop the list of pages
   for ($j=0; $j<=$NoOfLinks; $j++) {
-     echo "<tr><td>".$nav_data[$j][$nav_id]."</td>";
-     echo "<td><a href=\"navigation_edit.php?id=".$nav_data[$j][$nav_id].'">' .$nav_data[$j][$nav_text]."</a></td>";
-     echo "<td><code>".$nav_data[$j][$nav_link]."</code></td>\n";
-     echo "<td><a href=\"admin_functions.php?func=delete_navigation&amp;id=".$nav_data[$j][$nav_id]."\">Delete Link</a></td></tr>\n\n";
+     echo "<tr><td class=\"b1\">".$nav_data[$j][$nav_id]."</td>";
+     echo "<td class=\"b1\"><a href=\"navigation_edit.php?id=".$nav_data[$j][$nav_id].'">' .$nav_data[$j][$nav_text]."</a></td>";
+     echo "<td class=\"b1\"><code>".$nav_data[$j][$nav_link]."</code></td>\n";
+     echo "<td class=\"b1\"><a href=\"admin_functions.php?func=delete_navigation&amp;id=".$nav_data[$j][$nav_id]."\">Delete Link</a></td></tr>\n\n";
     }
   echo "\n</table>";
 

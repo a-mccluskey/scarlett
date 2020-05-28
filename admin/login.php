@@ -60,15 +60,14 @@ else
   $page_title = "Admin: Login";
   include '../template/index.php';
   echo "<h1>Admin Login page</h1><p>";
-  echo "";
-  echo "Whoops, looks like you're not logged in...</p>";
-  echo "<form action=\"login.php?i=1\" method=\"post\">";
-  echo "    <label for=\"uname\"><b>Username</b></label>";
-  echo "    <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>";
-  echo "    <label for=\"psw\"><b>Password</b></label>";
-  echo "    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>";
-  echo "    <button type=\"submit\">Login</button>";
-  echo "	</form>";
+  echo "Error, You're not logged in...</p>\n";
+  echo "<form action=\"login.php?i=1\" method=\"post\">\n";
+  echo "    <label for=\"uname\"><b>Username</b></label>\n";
+  echo "    <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" id=\"uname\" required>\n";
+  echo "    <label for=\"psw\"><b>Password</b></label>\n";
+  echo "    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" id=\"psw\" required>\n";
+  echo "    <button type=\"submit\">Login</button>\n";
+  echo "</form>";
 }//if i=/=1
 ?>
 </div>
