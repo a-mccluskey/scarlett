@@ -26,7 +26,6 @@ include('session.php');
 require_once('../config.php');
 $link=connectToAWDB();
 
-
  $result= dbQuery("SELECT * FROM sc_articles", $link);
 
  $page_data = array();
@@ -55,18 +54,12 @@ $link=connectToAWDB();
     echo "<td>".$page_data[$j][$page_created]."</td>\n";
     echo "<td>".$page_data[$j][$page_updated]."</td>";
     echo "<td>".$page_data[$j][$page_isPublished]."</td>";
-    echo "<td><a href=\"admin_functions.php?func=delete_article&id=".$page_data[$j][$page_id]."\">DELETE PAGE</a></td></tr>\n\n";
+    echo "<td><a href=\"admin_functions.php?func=delete_article&amp;id=".$page_data[$j][$page_id]."\">DELETE PAGE</a></td></tr>\n\n";
    }
-
-
-
 
 
  echo "\n </table>";
 disconnectAWDB($link);
 
 ?>
-</p>
-</div>
-</BODY>
-</HTML>
+</div></body></html>

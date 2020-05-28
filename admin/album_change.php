@@ -79,5 +79,5 @@ require_once('../config.php');
  echo "\n </table>";
  }//invalidAlbID
 disconnectAWDB($link);
-?></p>
+?>
 </div></body></html>

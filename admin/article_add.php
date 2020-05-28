@@ -13,15 +13,10 @@ include('session.php');
 ?>
 <h1>Article Manager</h1>
 <h2>Create an Article</h2>
-<p>
 <form action="admin_functions.php?func=add_article" method="post">
  Page Title: <input type="text" name="art_name"><br>
 Article text: <textarea name="art_text" rows="20" cols="120"></textarea><br>
 Article published: <input type="checkbox" name="art_publish"><br>
 <input type="submit">
-</form></p>
-
-</p>
-</div>
-</BODY>
-</HTML>
+</form>
+</div></body></html>

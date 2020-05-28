@@ -11,13 +11,10 @@ include('session.php');
  $page_title = "Admin: Edit promo items";
  include '../template/index.php';
 ?>
-<h1>Promo Manager Viewer</h1>
+<h1>Site Structure</h1>
 <h2>Promo banner manager</h2>
+<h3>View / Edit items in promo banner</h3>
 <p>Check that the images are showing up correctly, and if not edit the file name, or the link that they point to.</p>
-<p>
--- Add item to promo banner -¦-
-Remove items from promo banner -¦-
-<b>Edit items in promo banner</b> --</p><p>
 <?php 
   //connect to mysql database
   require_once('../config.php');
@@ -55,13 +52,8 @@ while($j<$i)
  $j++;
 }
 
-
 echo "</table>\n\n";
 
-
 disconnectAWDB($link);
-?>
-</p>
-</div>
-</BODY>
-</HTML>
+?></div>
+</body></html>

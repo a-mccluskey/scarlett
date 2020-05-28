@@ -26,14 +26,14 @@ Also some description. Ideally should be a lighter weight than the content pages
 * <a href="article_deleter.php">Remove</a><br>
 * <a href="article_viewer.php">Manage</a> - For editing, publishing, unpublishing, and previews<br></p></td>
 <td>
-<h3>Flash updates management</h2>
+<h3>Flash updates management</h3>
 <p>Options to add or remove a flash update</p><p>
 * <a href="flash_add.php">Add new Flash update</a><br>
 * <a href="flash_view.php">Manage existing Flash update</a><br>
 <i>To view the archive visit the public archive from the front page</i>
 </p></td></tr></table>
 
-<a href="#" onclick="toggle_visibility('image_content');" style="color: black; text-decoration: none;"><h2>Imagery Content</a></h2>
+<a href="#" onclick="toggle_visibility('image_content');" style="color: black; text-decoration: none;"><h2>Imagery Content</h2></a>
 <table id="image_content" style="display: block;"><tr><td style="width:50%;"><h3>Gallery Management</h3>
 <p>Here we can add new albums, edit the albums etc.></p><p>
 * <a href="album_add.php">Add New Album</a><br>

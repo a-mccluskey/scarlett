@@ -61,7 +61,7 @@ include('session.php');
   if($i>0) {
     $number_of_images = $i;
     $i=1;
-    echo "<br> There are: " . $number_of_images . " images in this album<br>\n \n";
+    echo "<br> There are: " . $number_of_images . " images in this album<br>\n\n";
     make_admin_table($number_of_images, $image_number, $MAIN_DOMAIN);
      //display in order that is in database
      //possible - if on mobile allow swiping through images? may need to not include the header until after this point...
@@ -83,10 +83,10 @@ include('session.php');
     echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
 	  echo alb_id_to_name($row['img_in_album']);
 	  echo "</a></p>\n<br>";
-    echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=e">';
-    echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&s=r">';
-	  echo "</a>\n<br>\n<br>"; 
-    echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>";
+    echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&amp;s=e">';
+    echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&amp;s=r">';
+	  echo "</a>\n<br>\n"; 
+    echo "<b>".$row['img_file_title']."</b>\n<br>".$row['img_description']."<br>\n";
     echo "Regular Views: ".$row['img_main_views']."<br>\n";
     echo "Extended Views: ".$row['img_fullsize_views']."<br><br>\n";
 	  
@@ -121,7 +121,10 @@ include('session.php');
  {
    $i++;
    $album_data[$i][0] = $row['album_id'];
-   $album_data[$i][1] = $row['album_name'];
+   if($row['album_name']!= "")
+      $album_data[$i][1] = $row['album_name'];
+    else
+    $album_data[$i][1] = "WARNING ALBUM NAME IS BLANK";
    $album_data[$i][2] = date('F Y', strtotime($row['album_date']));
    $album_data[$i][3] = $row['album_img_count'];
    $album_data[$i][4] = $row['album_thumb'];
@@ -139,5 +142,4 @@ include('session.php');
 
 ?>
 </div>
-</BODY>
-</HTML>
+</body></html>

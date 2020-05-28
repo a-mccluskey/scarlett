@@ -12,7 +12,7 @@
   include '../template/index.php';
   echo "<h1>".$page_title."</h1>\n";
   echo "<p>List of all the redirection links and their hit count\n<br>";
-  echo "Note: There is no option to remove or edit link, please <a href=\"redir_add.php\">just create a new one</a>.</p><p>";
+  echo "Note: There is no option to remove or edit link, please <a href=\"redir_add.php\">just create a new one</a>.</p>";
 
   $redir_guid = "RedirGUID";
   $redir_URL = "RedirURL";
@@ -44,4 +44,5 @@
     echo "<td>".$redir_data[$j][$redir_views]." Hits</td></tr>\n\n";
    }
  echo "\n </table>";
-?></p></div></body></html>
+?></div>
+</body></html>

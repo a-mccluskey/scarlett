@@ -14,7 +14,7 @@ include('session.php');
 
  echo "<h1>Navigation Manager Viewer</h1>\n";
  echo "<h2>Navigation Link Edit</h2>\n";
- echo "<p>List of all navigation banner links</p>\n<p>";
+ echo "<p>List of all navigation banner links</p>\n";
  echo "<table border=1><tr><td>Navigation<br> ID</td><td>Navigation Text</td><td>Navigation Link</td><td>Delete</td></tr>\n\n";
 
 $nav_id = "NavID";
@@ -36,19 +36,15 @@ $nav_text = "NavText";
  $NoOfLinks--;
  disconnectAWDB($link);
  
- 
   //loop the list of pages
   for ($j=0; $j<=$NoOfLinks; $j++) {
      echo "<tr><td>".$nav_data[$j][$nav_id]."</td>";
      echo "<td><a href=\"navigation_edit.php?id=".$nav_data[$j][$nav_id].'">' .$nav_data[$j][$nav_text]."</a></td>";
-     echo "<td>".$nav_data[$j][$nav_link]."</td>\n";
-     echo "<td><a href=\"admin_functions.php?func=delete_navigation&id=".$nav_data[$j][$nav_id]."\">Delete Link</a></td>";
+     echo "<td><code>".$nav_data[$j][$nav_link]."</code></td>\n";
+     echo "<td><a href=\"admin_functions.php?func=delete_navigation&amp;id=".$nav_data[$j][$nav_id]."\">Delete Link</a></td></tr>\n\n";
     }
- 
-  echo "\n </table>";
+  echo "\n</table>";
 
 ?>
-</p>
 </div>
-</body>
-</html>
+</body></html>

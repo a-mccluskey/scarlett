@@ -61,7 +61,7 @@ else
   include '../template/index.php';
   echo "<h1>Admin Login page</h1><p>";
   echo "";
-  echo "Whoops, looks like you're not logged in...<br>";
+  echo "Whoops, looks like you're not logged in...</p>";
   echo "<form action=\"login.php?i=1\" method=\"post\">";
   echo "    <label for=\"uname\"><b>Username</b></label>";
   echo "    <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required>";
@@ -69,7 +69,6 @@ else
   echo "    <input type=\"password\" placeholder=\"Enter Password\" name=\"password\" required>";
   echo "    <button type=\"submit\">Login</button>";
   echo "	</form>";
-  echo "</p>";
 }//if i=/=1
 ?>
 </div>

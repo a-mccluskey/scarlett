@@ -69,9 +69,4 @@ $link=connectToAWDB();
 
  echo "\n </table>";
 ?>
-
-
-</p>
-</div>
-</BODY>
-</HTML>
+</div></body></html>

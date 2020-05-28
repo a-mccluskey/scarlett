@@ -13,10 +13,7 @@ include('session.php');
 ?>
 <h1>Image Manager</h1>
 <h2>Upload an Image</h2>
-<p>
-
- <form action="upload_file.php" method="post"
- enctype="multipart/form-data">
+ <form action="upload_file.php" method="post" enctype="multipart/form-data">
  <label for="file">Filename:</label>
  <input type="file" name="file" id="file"><br>
  Please Give Title of File: <input type="text" name="img_title"><br>
@@ -26,10 +23,6 @@ include('session.php');
  <input type="submit" name="submit" value="Submit">
  </form>
 CAUTION MAX Size 2 MB
-
-
-</p>
-</p>
 </div>
 </BODY>
 </HTML>

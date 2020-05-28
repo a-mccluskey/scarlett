@@ -12,7 +12,7 @@ include('session.php');
  include '../template/index.php';
 ?>
 <h1>Article Manager</h1>
-<h2>Edit an Article</h2><p>
+<h2>Edit an Article</h2>
 <?php
 
 $art_ID = $_GET['id'];
@@ -31,23 +31,16 @@ if(is_numeric($art_ID)==1)
    $page_published = $row['art_published'];
   }
 
-  echo '<form action="admin_functions.php?func=edit_article" method="post">';
-  echo '<input type="hidden" name="fid" value="'. $art_ID .'">';
-  echo ' Page Title: <input type="text" name="art_name" value="'.$page_title.'"><br>';
-  echo 'Article text: <textarea name="art_text" rows=20" cols="120">'.$page_content.'</textarea><br>';
+  echo '<form action="admin_functions.php?func=edit_article" method="post">'."\n";
+  echo '<input type="hidden" name="fid" value="'. $art_ID .'">'."\n";
+  echo 'Page Title: <input type="text" name="art_name" value="'.$page_title.'"><br>'."\n";
+  echo "Article text: \n\n".'<textarea name="art_text" rows=20 cols=120>'.$page_content.'</textarea><br>'."\n";
   echo 'Article published: <input type="checkbox" name="art_publish" ';
    if($page_published==1)
    { echo 'checked="checked"'; }
-  echo '"><br>';
-  echo '<input type="submit">';
-  echo '</form>';
-
+  echo "><br>\n";
+  echo "<input type=\"submit\"></form>\n";
 }
 disconnectAWDB($link);
 
-?>
-</p>
-</p>
-</div>
-</BODY>
-</HTML>
+?></div></body></html>

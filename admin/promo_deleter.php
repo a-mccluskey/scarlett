@@ -11,9 +11,9 @@ include('session.php');
  $page_title = "Admin: Remove promo item";
  include '../template/index.php';
 ?>
-<h1>Promo Manager Viewer</h1><p>
- -- Add item to promo banner -¦- <b>Remove items from promo banner</b> -¦-
-Edit items in promo banner -- </p><p>
+<h1>Site Structure</h1>
+<h2>Promo banner manager</h2>
+<h3>Remove items from promo banner</h3>
 <?php 
 
   //connect to mysql database
@@ -47,15 +47,12 @@ while($j<$i)
  echo '<td>/promo/' . $imageData[$j][$image_location] . '.jpg</td>';
  echo '<td>' . $imageData[$j][$image_description] . "</td>\n  ";
  echo '<td>' . $imageData[$j][$image_linkTo] . '</td>';
- echo '<td><a href="admin_functions.php?func=del_promo_item&id=' . $imageData[$j][$img_id] . '">[DELETE]</a></td>';
+ echo '<td><a href="admin_functions.php?func=del_promo_item&amp;id=' . $imageData[$j][$img_id] . '">[DELETE]</a></td>';
  echo "</tr> \n";
  $j++;
 }
 echo '</table>';
 
 disconnectAWDB($link);
-?>
-</p>
-</div>
-</BODY>
-</HTML>
+?></div>
+</body></html>

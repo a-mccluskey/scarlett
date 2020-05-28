@@ -11,14 +11,10 @@ include('session.php');
  $page_title = "Admin: Edit promo item";
  include '../template/index.php';
 ?>
-<h1>Promo Manager Viewer</h1>
+<h1>Site Structure</h1>
 <h2>Promo banner manager</h2>
+<h3>Edit a specific Promo item</h3>
 <p>Items will need to be screened for the image existing, image being right size(300x225), and the URL existing.</p>
-<p>
-Add item to promo banner<br>
-Remove items from promo banner<br>
-edit items in promo banner<br>
-</p><p>
 <?php 
 $img_id=$_GET['id'];
 
@@ -41,18 +37,13 @@ while($row = mysqli_fetch_array($result))
  $imageData[$image_linkTo] = $row['image_link'];
 }
 
-echo '<form action="admin_functions.php?func=edit_promo_item" method="post">';
-echo '<input type="hidden" name="fid" value="'. $img_id .'">';
-echo ' FileName: <input type="text" name="fname" value="'. $imageData[$image_location] .'"><br>';
-echo ' Description: <input type="text" name="fdescription" value="'. $imageData[$image_description] .'"><br>';
-echo ' Link To: <input type="text" name="flink" value="'. $imageData[$image_linkTo] .'"><br>';
-echo '<input type="submit"></form>';
+echo '<form action="admin_functions.php?func=edit_promo_item" method="post">'."\n";
+echo '<input type="hidden" name="fid" value="'. $img_id .'">'."\n";
+echo 'FileName: <input type="text" name="fname" value="'. $imageData[$image_location] .'"><br>'."\n";
+echo 'Description: <input type="text" name="fdescription" value="'. $imageData[$image_description] .'"><br>'."\n";
+echo 'Link To: <input type="text" name="flink" value="'. $imageData[$image_linkTo] .'"><br>'."\n";
+echo '<input type="submit"></form>'."\n";
 
-
-
-disconnectAWDB();
-?>
-</p>
-</div>
-</BODY>
-</HTML>
+disconnectAWDB($link);
+?></div>
+</body></html>

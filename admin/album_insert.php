@@ -13,7 +13,6 @@ include('session.php');
 ?>
 <h1>Album Manager</h1>
 <h2>Insert into an album</h2>
-<p>
 <form action="admin_functions.php?func=add_imgtoalbum" method="post">
 Image Number: <input type="text" name="img_id"><br>
 Album Number: <select name="alb_id">
@@ -27,10 +26,6 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 }
 disconnectAWDB($link);
 ?></select><br>
-
 <input type="submit">
-</form></p>
-</p>
-</div>
-</BODY>
-</HTML>
+</form>
+</div></body></html>

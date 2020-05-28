@@ -46,13 +46,12 @@ include('session.php');
         $date = strtotime($row['t_datetime']);
         $date= date("d/m/Y", $date);
         //output will be 10/7/2013
-        echo "<td><a href=\"flash_view.php?id=".$row['t_id']."\">".$date."</a></td><td>".$row['t_text'];
-        echo "</td><td>".$row['t_location']. "</td>";
-        echo "<td><a href=\"admin_functions.php?func=delete_flash&id=".$row['t_id']."\">DELETE</a></td></tr>\n";
+        echo "<td><a href=\"flash_view.php?id=".$row['t_id']."\">".$date."</a></td>\n<td>".$row['t_text'];
+        echo "</td><td>".$row['t_location']. "</td>\n";
+        echo "<td><a href=\"admin_functions.php?func=delete_flash&amp;id=".$row['t_id']."\">DELETE</a></td></tr>\n\n";
     }
     disconnectAWDB($link);
 
-    echo "</tr>";
     echo "</table>";
     if($minUpdate>0)
         echo "<a href=\"flash_view.php?page=".($_GET["page"]-1)."\">Previous page</a>";
@@ -71,7 +70,8 @@ function DisplayUpdate($updateID)
     $row=mysqli_fetch_assoc($result);
     disconnectAWDB($link);
     //ouput the update in a form
-    echo "<form action=\"admin_functions.php?func=edit_flash&id=".$updateID."\" method=\"post\">";
+    echo "Modifying an existing update</p>";
+    echo "<form action=\"admin_functions.php?func=edit_flash&amp;id=".$updateID."\" method=\"post\">";
     echo "<label>Update Text:</label><input type=\"text\" name=\"flash_text\" value=\"".$row['t_text']."\"><br>";
     echo "<label>Posting location:</label><input type=\"text\" name=\"flash_location\" value=\"".$row['t_location']."\"><br>";
     echo "<input type=\"submit\">\n</form>";
@@ -98,4 +98,4 @@ else
 {
     displayAllUpdates();
 }
-?></p></div></body></html>
+?></div></body></html>
