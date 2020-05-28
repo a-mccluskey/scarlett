@@ -13,7 +13,7 @@ include('session.php');
 require_once('../config.php');
 ?>
 <h1>Navigation Manager</h1>
-<h2>Edit an Link</h2><p>
+<h2>Edit an Link</h2>
 <?php
 
 $nav_ID = $_GET['id'];
@@ -41,9 +41,5 @@ else
   echo "An error has occured getting the link details, please retry.";
 }
 disconnectAWDB($link);
-?>
-</p>
-</p>
-</div>
-</body>
-</html>
+?></div>
+</body></html>

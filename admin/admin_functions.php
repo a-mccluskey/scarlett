@@ -23,7 +23,7 @@ This page contains all the database functions to get called so that they can nea
 
  include '../template/index.php';
 
-if($_SERVER['SERVER_PORT'] == 80)
+if($_SERVER['SERVER_PORT'] == 80) 
 {
   //die(); //if we want to only allow access over https
   $hostname = "http";
@@ -31,16 +31,19 @@ if($_SERVER['SERVER_PORT'] == 80)
 elseif($_SERVER['SERVER_PORT'] == 443)
 {
   $hostname = "https";
-
 }
 else
 {
   echo "unrecognised port";
-  die(); //In all cases we will now quit - if
+  die(); //In all cases we will now quit
+  //if the site is hosted on a custom port(eg 8080)
 }
 
+//$hostname will have a value like https://mydomain.com/
 $hostname .= "://".$_SERVER['HTTP_HOST']."/";
 
+//if $hostname matches the HTTP_REFERER from the first character only we're confident this should be good
+//this will block any attempts from https://badomain.com/https://mydomain.com/admin/page.php - 
 if(strpos($_SERVER['HTTP_REFERER'], $hostname)===0)
 {
   //the referer is from the same site - do nothing
@@ -51,6 +54,11 @@ else
   error_log("Attempt to access admin_functions from outside the server, referer was: \"". $_SERVER['HTTP_REFERER']. "\" Attempt was from IP address: \"". $_SERVER['REMOTE_ADDR']."\"");
   die();
 }
+
+//At this point we're confident that we're allowed to access the page
+//But we don't know what action is going to be done.
+//MAIN_DOMAIN is added here for the purpose of ensuring that the correct site is done by the user
+echo "<h1>Updating site ".$MAIN_DOMAIN."</h1>";
 
 //switches act as a big if, else if, else if, else
 //so as to maintain code clenliness.
@@ -63,10 +71,10 @@ switch ($_GET["func"])
 |			create a new promo item	
 +-----------------------------------------------+
 */
-  //connect to mysql database
   $link=connectToAWDB();
 
   //provide escape strings, reducing chance of bad data
+  //should be noted with php5+ con needs to be the first variable
   $image_location = stripslashes($_POST["fname"]);
   $image_location = mysqli_real_escape_string($link, $image_location);
 
@@ -102,8 +110,7 @@ case "del_promo_item":
 */
   $link=connectToAWDB();
 
-  //usual escape string, malicious use COULD delete mutiple bits
-  //should be noted with php5+ con needs to be the first variable
+  //escape string, malicious use COULD delete mutiple bits
   $del_id = mysqli_real_escape_string($link, $_GET["id"]);
   echo 'deleting: '.$del_id;
 
@@ -229,6 +236,7 @@ case"edit_article";
 
   dbQuery($sql_statement, $link);
   disconnectAWDB($link);
+  echo "Successfully updated article: ". $art_title;
 
 break;//edit_article
 
@@ -267,8 +275,8 @@ if(is_numeric($_GET["id"])==1)
     //output are they sure, okay not elegant but it works
     echo "<p>Are you sure that you would like to delete article: "; 
     echo $_GET["id"] . " ? note that this is permenant, consider unpublishing instead</p>\n<p>";
-    echo '<a href="admin_functions.php?func=delete_article&id=';
-    echo $_GET["id"]."&verify=True";
+    echo '<a href="admin_functions.php?func=delete_article&amp;id=';
+    echo $_GET["id"]."&amp;verify=True";
     echo '"><b>YES</b></a>(delete now) or <a href="."><b>NO</b></a>(return to main menu)';
   } //end are your sure == False
 } //end is a number = True
@@ -290,7 +298,7 @@ case"add_imgtoalbum";
 
   $img_id = $_REQUEST["img_id"];
   $alb_id = $_REQUEST["alb_id"];
-  echo "Image is: ". $img_id ." Album is: ". $alb_id ."<br>";
+  echo "<p>Image is: ". $img_id ." Album is: ". $alb_id ."<br>";
   if(is_numeric($alb_id) AND is_numeric($img_id)) 
   {
     //connect to mysql database
@@ -302,7 +310,7 @@ case"add_imgtoalbum";
     $alb_img_inc = "UPDATE sc_album_details SET album_img_count = album_img_count + 1 WHERE album_id = '$alb_id'";
     dbQuery($alb_img_inc, $link);
     disconnectAWDB($link);
-    echo "Added Image: " . $img_id. " to album: " . $alb_id;
+    echo "Added Image: " . $img_id. " to album: " . $alb_id. "</p>\n";
   }
   else {
   echo "Error, either album ID or image ID are incorrect"; 
@@ -449,17 +457,19 @@ if(is_numeric($_GET["id"])==1)
 	  //run the statement 
     dbQuery($sql_statement, $link);
 	  //done
-  	disconnectAWDB($link);
+    disconnectAWDB($link);
+    
+    echo "Deleted Navigation item ". $del_id;
   	
 } //end $areyousure = True
   else 
   {
 	//user is not sure/not been prompted...
 	//output are they sure, okay not elegant but it works
-	echo "<p>Are you sure that you would like to delete Navigation Link: "; 
-	echo $_GET["id"] . " ?</p><p>";
-	echo '<a href="admin_functions.php?func=delete_nav&id=';
-	echo $_GET["id"]."&verify=True";
+	echo "<p>Are you sure that you would like to delete navigation Link: "; 
+	echo $_GET["id"] . " ?</p>\n";
+	echo '<p><a href="admin_functions.php?func=delete_navigation&amp;id=';
+	echo $_GET["id"]."&amp;verify=True";
 	echo '"><b>YES</b></a> or <a href="."><b>NO</b></a>';
 
   } //end are your sure = false
@@ -519,7 +529,7 @@ case "add_flash";
     $result= dbQuery($sql_statement, $link);
     $flash_id = $link->insert_id;
   
-    echo "Added flash update : ".$flash_text. "ID is:" . $flash_id;
+    echo "Added flash update : ".$flash_text. " ID is:" . $flash_id;
   }
 
   disconnectAWDB($link);
@@ -588,10 +598,10 @@ if(is_numeric($_GET["id"])==1)
   {
     //user is not sure/not been prompted...
     //output are they sure, okay not elegant but it works
-    echo "<p>Are you sure that you would like to delete article: "; 
-    echo $_GET["id"] . " ? note that this is permenant, consider unpublishing instead</p>\n<p>";
-    echo '<a href="admin_functions.php?func=delete_flash&id=';
-    echo $_GET["id"]."&verify=True";
+    echo "<p>Are you sure that you would like to delete update: "; 
+    echo $_GET["id"] . " ? Note that this is permenant</p>\n<p>";
+    echo '<a href="admin_functions.php?func=delete_flash&amp;id=';
+    echo $_GET["id"]."&amp;verify=True";
     echo '"><b>YES</b></a>(delete now) or <a href="."><b>NO</b></a>(return to main menu)';
   } //end are your sure == False
 } //end is a number = True
@@ -633,12 +643,9 @@ echo "Link is: <br><code>r.php?loc=" . $guid . "</code><br>";
 break;
  default:
   echo "illegal file access";
-  //okay, should also just redirect to the front page.
+  //okay, should also just redirect to $MAIN_DOMAIN.
   } 
 
   
-  ?>
-</p>
-</div>
-</body>
-</html>
+  ?></div>
+</body></html>

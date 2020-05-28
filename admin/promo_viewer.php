@@ -43,7 +43,7 @@ echo "<td>EDIT</td></tr>\n\n";
 $j=0;
 while($j<$i)
 {
- echo ' <tr><td><img src="../promo/' . $imageData[$j][$image_location] . '.jpg"></td>';
+ echo ' <tr><td><img src="'.$MAIN_DOMAIN.'promo/' . $imageData[$j][$image_location] . '.jpg"></td>';
  echo '<td>/promo/' . $imageData[$j][$image_location] . '.jpg</td>';
  echo '<td>' . $imageData[$j][$image_description] . "</td>\n  ";
  echo '<td>' . $imageData[$j][$image_linkTo] . '</td>';

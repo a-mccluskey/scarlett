@@ -13,7 +13,7 @@ include('session.php');
 
  $page_title = "Adding new image to the site";
  include '../template/index.php';
- echo "<h1>Adding New image to the site</h1>";
+ echo "<h1>Adding New image to the site</h1><p>\n";
  
  $current_date = date('ymd'); 
  $date_number = 0;
@@ -32,7 +32,7 @@ include('session.php');
 
  $max_size = 6 *(1024 *1024);
  if($_FILES["file"]["size"]>$max_size){ 
- echo "Whoops file is too big!";
+ echo "ERROR: file is too big!";
  }//just output a friendly error that the file uploaded is more then 6MB, yes i know the previous page says 2 is the limit but... reasons
  
  //admitedly a file can have a png extension but be of jpg type, but this isnt really an issue
@@ -117,10 +117,10 @@ include('session.php');
     imagejpeg($img_r, "../".$r_filename);
     rename("../temp/".$final_file_name, "../".$e_filename);
     
-    echo "<br>Uploaded Sucsessfully!<br><img src=\"".$MAIN_DOMAIN . $p_filename . "\"><br>";
+    echo "<br>Uploaded Sucsessfully!<br>\n<img src=\"".$MAIN_DOMAIN . $p_filename . "\"><br>\n";
     echo "<a href=\"".$MAIN_DOMAIN.$r_filename."\">Regular</a><br>";
     echo "<a href=\"".$MAIN_DOMAIN.$e_filename."\">Extended</a><br>";
-    echo "Fullsize filename is: ". $e_filename."<br>";
+    echo "Fullsize filename is: <code>". $e_filename."</code><br>\n";
 
     //All three versions of the file should exist so now to add to the database...
     $link=connectToAWDB();
@@ -144,9 +144,9 @@ include('session.php');
 	 $img_id = mysqli_insert_id($link);
 	 //insert to db was sucsess! if it wasnt then there would be some sort of autoerror
 	 //we've also caught the image id to show the user
-     echo "<br>Upload to an album?<br>";
+     echo "<br>Upload to an album?<br></p>\n";
       
-      echo "<p><form action=\"admin_functions.php?func=add_imgtoalbum\" method=\"post\">";
+      echo "<form action=\"admin_functions.php?func=add_imgtoalbum\" method=\"post\">";
 	  /* 
 Dropdown box here with list of albums*/
 echo 'Album Number: <select name="alb_id">';
@@ -156,12 +156,12 @@ $result = dbQuery($listOfAlbums, $link);
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	echo "<option value=\"". $row['album_id']. "\">". $row['album_name']."</option>\n";
 }
-echo "</select><br>\n";
+echo "</select><br>\n\n";
 
 	  
       //echo "Album Number: <input type=\"text\" name=\"alb_id\"><br>";
       echo '<input type="hidden" name="img_id" value="'. $img_id .'">';
-      echo "<input type=\"submit\">\n</form></p>\n";
+      echo "<input type=\"submit\">\n</form>\n";
 	  echo "<p>if not the unique image id is:".$img_id;
      
 	 
@@ -175,4 +175,5 @@ echo "</select><br>\n";
    echo $_FILES["file"]["size"]."<br>";
    echo $_FILES["file"]["type"];
  }
- ?>
+ ?></div>
+ </body></html>
