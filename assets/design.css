@@ -42,13 +42,29 @@ figcaption {
  background-color:#116;
  width:300px;
 }
+a.caption {
+  color: #FFF; 
+  text-decoration:none;
+}
+table {
+  border-collapse: collapse;
+}
+table.b1, th.b1, td.b1 {
+  border: 1px solid #229;
+}
+tr:nth-child(even) {
+  background-color: #F7CFCF;
+}
+tr:nth-child(odd) {
+  background-color: #F7E7E7;
+}
 nav {
  float: right;
  width: 250px;
  background-color: #222;
  color: #FFF;
  font: 25px; 
- right 25px;
+ right: 25px;
  padding: 5px;
  font-weight: bold;
 }
@@ -58,10 +74,10 @@ img {
  object-fit:scale-down;
 }
 .centre {
-//    display: block;
+/*    display: block;*/
    margin-left: auto;
    margin-right: auto;
-   width;
+   /*width;*/
 }
 table {
  margin: 50px;
@@ -88,12 +104,15 @@ figure {
 td {
  vertical-align: top;
 }
+.floatLeft {
+  float: left;
+}
 br.clearLeft {
  clear:left;
 }
 div.GalleryPreviewImg {
  display: flex;
  justify-content: center;
- background-color:#FDE;
+ /*background-color:#FDE;*/
  height:230px;
 }

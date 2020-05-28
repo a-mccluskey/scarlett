@@ -9,6 +9,7 @@ body {
  background-color: #FCC;
  position: relative;
  padding: 0px;
+ display: table;
 }
 #topper {
  background-color: #A22;
@@ -48,7 +49,23 @@ figcaption {
  background-color:#116;
  width:300px;
  color: #FFF;
-margin: -2px;
+ margin: -2px;
+}
+a.caption {
+  color: #FFF; 
+  text-decoration:none;
+}
+table {
+  border-collapse: collapse;
+}
+table.b1, th.b1, td.b1 {
+  border: 1px solid #33C;
+}
+tr:nth-child(even) {
+  background-color: #F7CFCF;
+}
+tr:nth-child(odd) {
+  background-color: #F7E7E7;
 }
 nav {
  float: center;
@@ -85,6 +102,13 @@ figure {
 td {
  vertical-align: top;
 }
+.alignRight {
+  position: absolute;
+  right: 0px;
+}
+.floatLeft {
+  float: left;
+}
 br.clearLeft {
  clear:left;
 }
@@ -94,6 +118,6 @@ br.clearLeft {
 div.GalleryPreviewImg {
  display: flex;
  justify-content: center;
- background-color:#FDE;
+ /*background-color:#FDE;*/
  height:230px;
 }
