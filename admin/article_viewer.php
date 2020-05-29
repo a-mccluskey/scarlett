@@ -10,7 +10,9 @@ include('session.php');
 
  $page_title = "Admin: View and Modify Articles";
  include '../template/index.php';
- echo "<h1>".$page_title."</h1>\n";
+ echo "<h1>Site Content</h1>\n";
+ echo "<h2>Article Management</h2>\n";
+ echo "<h3>View and Modify Articles</h3>\n";
  echo "<p>List of articles, both published and unpublished\n</p>";
 
   $page_id = "PageID";
@@ -35,7 +37,10 @@ $link=connectToAWDB();
  $page_data[$i][$page_id] = $row['art_id'];
  $page_data[$i][$page_title] = $row['art_title'];
 // $page_data[$i][$page_content] = $row['art_text'];
- $page_data[$i][$page_isPublished] = $row['art_published'];
+if($row['art_published']=="1")
+    $page_data[$i][$page_isPublished] = "Yes";
+else
+    $page_data[$i][$page_isPublished] = "No";
  $page_data[$i][$page_created] = $row['art_created'];
  $page_data[$i][$page_updated] = $row['art_updated'];
  $page_data[$i][$page_views] = $row['art_views'];
@@ -51,22 +56,22 @@ $link=connectToAWDB();
    }*/
 
 
- echo "<table border=1><tr><td>Page ID</td><td>Page Title</td><td>Created</td>
-<td>Updated</td><td>Published</td><td>Preview Link</td><td>View Count</td></tr>\n\n";
-
-
+ echo "<table class=\"b1\"><tr><th class=\"b1\">Page ID</th><th class=\"b1\">Page Title</th><th class=\"b1\">Created</th>";
+ echo "<th class=\"b1\">Updated</th><th class=\"b1\">Published</th><th class=\"b1\">Preview Link</th>";
+ echo "<th class=\"b1\">View Count</th></tr>\n\n";
 
  //loop the list of pages
- for ($j=0; $j<=$i; $j++) {
-    echo "<tr><td>".$page_data[$j][$page_id]."</td>";
-    echo "<td><a href=\"article_edit.php?id=".$page_data[$j][$page_id].'">' .$page_data[$j][$page_title]."</a></td>";
-    echo "<td>".$page_data[$j][$page_created]."</td>\n";
-    echo "<td>".$page_data[$j][$page_updated]."</td>";
-    echo "<td>".$page_data[$j][$page_isPublished]."</td>";
-    echo "<td><a href=\"article.php?id=".$page_data[$j][$page_id]."\">PREVIEW</a></td>";
-    echo "<td>".$page_data[$j][$page_views]." Views</td></tr>\n\n";
+ for ($j=0; $j<=$i; $j++) 
+ {
+    echo "<tr><td class=\"b1\">".$page_data[$j][$page_id]."</td>";
+    echo "<td class=\"b1\"><a href=\"article_edit.php?id=".$page_data[$j][$page_id].'">' .$page_data[$j][$page_title]."</a></td>";
+    echo "<td class=\"b1\">".$page_data[$j][$page_created]."</td>\n";
+    echo "<td class=\"b1\">".$page_data[$j][$page_updated]."</td>";
+    echo "<td class=\"b1\">".$page_data[$j][$page_isPublished]."</td>";
+    echo "<td class=\"b1\"><a href=\"article.php?id=".$page_data[$j][$page_id]."\">PREVIEW</a></td>";
+    echo "<td class=\"b1\">".$page_data[$j][$page_views]." Views</td></tr>\n\n";
    }
-
- echo "\n </table>";
+ echo "\n</table>";
 ?>
-</div></body></html>
+</div>
+</body></html>

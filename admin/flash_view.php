@@ -39,16 +39,19 @@ include('session.php');
     $update_result = dbQuery($sql_update, $link);
 
     echo "Here is a list of latest flash updates ".$minUpdate." to ".$maxUpdate;
-    echo "<table border=\"1\"><tr><td>Date</td><td>Message</td><td>Location</td><td>DELETE LINK</td></tr>";
+    echo "<table class=\"b1\"><tr><th class=\"b1\">Date</th><th class=\"b1\">Message</th><th class=\"b1\">Location</th>";
+    echo "<th class=\"b1\">DELETE LINK</th></tr>";
+
     while($row=mysqli_fetch_array($update_result, MYSQLI_ASSOC)) 
     {
         echo "<tr>";
         $date = strtotime($row['t_datetime']);
         $date= date("d/m/Y", $date);
         //output will be 10/7/2013
-        echo "<td><a href=\"flash_view.php?id=".$row['t_id']."\">".$date."</a></td>\n<td>".$row['t_text'];
-        echo "</td><td>".$row['t_location']. "</td>\n";
-        echo "<td><a href=\"admin_functions.php?func=delete_flash&amp;id=".$row['t_id']."\">DELETE</a></td></tr>\n\n";
+        echo "<td class=\"b1\"><a href=\"flash_view.php?id=".$row['t_id']."\">".$date."</a></td>\n";
+        echo "<td class=\"b1\">".$row['t_text']."</td>";
+        echo "<td class=\"b1\">".$row['t_location']. "</td>\n";
+        echo "<td class=\"b1\"><a href=\"admin_functions.php?func=delete_flash&amp;id=".$row['t_id']."\">DELETE</a></td></tr>\n\n";
     }
     disconnectAWDB($link);
 

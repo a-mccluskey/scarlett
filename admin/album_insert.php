@@ -11,12 +11,13 @@ include('session.php');
  $page_title = "Admin: Add an image to an Album";
  include '../template/index.php';
 ?>
-<h1>Album Manager</h1>
-<h2>Insert into an album</h2>
+<h1>Imagery Content</h1>
+<h2>Gallery Managment</h2>
+<h3>Link Existing image to an album</h3>
 <form action="admin_functions.php?func=add_imgtoalbum" method="post">
-Image Number: <input type="text" name="img_id"><br>
-Album Number: <select name="alb_id">
-<?php
+<label for="img_id">Image Number: </label><input type="text" name="img_id" id="img_id"><br>
+<label for="alb_id">Album Number: </label><select name="alb_id" id="alb_id">
+<?php //Populate the dropdown listt with the existing album names
 require_once("../config.php");
 $link=connectToAWDB();
 $listOfAlbums = "SELECT album_id, album_name FROM sc_album_details";
