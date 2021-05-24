@@ -311,6 +311,7 @@ case"add_imgtoalbum";
     dbQuery($alb_img_inc, $link);
     disconnectAWDB($link);
     echo "Added Image: " . $img_id. " to album: " . $alb_id. "</p>\n";
+    echo "<a href='img_add.php'>Add New Image</a></p>";
   }
   else {
   echo "Error, either album ID or image ID are incorrect"; 
