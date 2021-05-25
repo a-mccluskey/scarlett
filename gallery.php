@@ -22,7 +22,7 @@ error_reporting(E_ALL);*/
  $page_title = "Gallery";
  include('template/index.php');
  echo "<h1>Scarlett Compass Gallery</h1>\n";
- echo "<p><a href=\"index.php\">HOME</a>";
+ echo "<p class=\"GalleryBreadcrumb\"><a href=\"index.php\">HOME</a>";
 
  $album_ID = $_GET['alb'];
  //if $album_ID is a number and the gallery exists then 
@@ -79,7 +79,7 @@ error_reporting(E_ALL);*/
     }
 
     $gallery_browser = FALSE; //We dont want the gallery displaying at the end of the album
-    $get_all_album_images =  "SELECT * FROM sc_image_details WHERE img_in_album='$album_ID'";
+    $get_all_album_images =  "SELECT * FROM sc_image_details WHERE img_in_album='$album_ID' AND img_public_viewable = 1";
     //get the list of images assosiated with this album
     $result = dbQuery($get_all_album_images, $link);
 
@@ -95,7 +95,7 @@ error_reporting(E_ALL);*/
       $number_of_images = $i;
       $i=1;
       if(is_numeric($image_ID) != 1) {
-        echo "<br> There are: " . $number_of_images . " images in this album<br>\n \n";
+        echo "<br> There are " . $number_of_images . " images in this album<br>\n \n";
       }
       make_table($number_of_images, $image_number);
  
