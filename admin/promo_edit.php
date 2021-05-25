@@ -39,10 +39,10 @@ while($row = mysqli_fetch_array($result))
 
 echo '<form action="admin_functions.php?func=edit_promo_item" method="post">'."\n";
 echo '<input type="hidden" name="fid" value="'. $img_id .'">'."\n";
-echo 'FileName: <input type="text" name="fname" value="'. $imageData[$image_location] .'"><br>'."\n";
-echo 'Description: <input type="text" name="fdescription" value="'. $imageData[$image_description] .'"><br>'."\n";
-echo 'Link To: <input type="text" name="flink" value="'. $imageData[$image_linkTo] .'"><br>'."\n";
-echo '<input type="submit"></form>'."\n";
+echo '<label for="fname">FileName:</label> <input type="text" name="fname" value="'. $imageData[$image_location] .'"><br>'."\n";
+echo '<label for="fdescription">Description:</label> <input type="text" name="fdescription" value="'. $imageData[$image_description] .'"><br>'."\n";
+echo '<label for="flink">Link To:</label> <input type="text" name="flink" value="'. $imageData[$image_linkTo] .'"><br><br>'."\n";
+echo '<label for="submit"></label><input type="submit"></form>'."\n";
 
 disconnectAWDB($link);
 ?></div>

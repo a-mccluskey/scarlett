@@ -16,9 +16,9 @@ include('session.php');
 <h3>Add item to promo banner</h3>
 <p>Items will need to be screened for the image existing, image being right size(300x225), and the URL existing.</p>
 <form action="admin_functions.php?func=add_promo_item" method="post">
-FileName: <input type="text" name="fname"><br>
-Description: <input type="text" name="fdescription"><br>
-Link To: <input type="text" name="flink"><br>
-<input type="submit">
+<label for="fname">FileName:</label> <input type="text" name="fname"><br>
+<label for="fdescription">Description:</label> <input type="text" name="fdescription"><br>
+<label for="flink">Link To:</label> <input type="text" name="flink"><br><br>
+<label for="submit"></label><input type="submit">
 </form>
 </div></body></html>

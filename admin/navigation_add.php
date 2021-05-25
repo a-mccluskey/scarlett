@@ -16,8 +16,8 @@ include('session.php');
 <h3>Navigation Link Add</h3>
 <p>Items added will be at the bottom of the navigation list.</p>
 <form action="admin_functions.php?func=add_navigation" method="post">
-Link text: <input type="text" name="navtext"><br>
-Link To: <input type="text" name="navlink"placeholder="article.php?id="> * Note: <i>Links are restricted to site use only</i><br>
-<input type="submit">
+<label for="navtext">Link text:</label> <input type="text" name="navtext"><br>
+<label for="navlink">Link To:</label> <input type="text" name="navlink"placeholder="article.php?id="> * Note: <i>Links are restricted to site use only</i><br><br>
+<label for="submit"></label><input type="submit">
 </form></div>
 </body></html>

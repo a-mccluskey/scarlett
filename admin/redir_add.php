@@ -15,7 +15,7 @@ include('session.php');
 <h2>Redirect manager</h2>
 <h3>Add a redirection link</h3>
 <form action="admin_functions.php?func=add_redir" method="post">
-URL to add: <input type="text" name="redir_url"><br>
-<input type="submit">
+<label for="redir_url">URL to add:</label> <input type="text" name="redir_url"><br><br>
+<label for="submit"></label><input type="submit">
 </form>
 </div></body></html>

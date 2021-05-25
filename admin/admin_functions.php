@@ -108,18 +108,43 @@ case "del_promo_item":
 |
 +------------------------------------------------+
 */
+//rather than just blindly delete an article - we do an "are you sure?"
+$areYouSure=$_GET["verify"];
+if($areYouSure == True) 
+{
   $link=connectToAWDB();
 
   //escape string, malicious use COULD delete mutiple bits
   $del_id = mysqli_real_escape_string($link, $_GET["id"]);
-  echo 'deleting: '.$del_id;
-
   //again this could be done in one line, but for clarity, do two
   $sql_statement = "DELETE FROM sc_promo_images WHERE img_id = '$del_id'";
  
   dbQuery($sql_statement, $link);
   disconnectAWDB($link);
-  echo "Deletion of ". $del_id ."is completed";
+  echo "Deletion of ". $del_id ." is completed";
+} //end $areyousure == True
+else 
+{
+  //user is not sure/not been prompted...
+  //output are they sure, okay not elegant but it works
+  echo "<p>Are you sure that you would like to delete promo item: "; 
+  echo $_GET["id"] . " ? note that this is permenant, consider unpublishing instead</p>\n<p>";
+  echo '<a href="admin_functions.php?func=del_promo_item&amp;id=';
+  echo $_GET["id"]."&amp;verify=True";
+  echo '"><b>YES</b></a>(delete now) or <a href="."><b>NO</b></a>(return to main menu)';
+} //end are your sure == False
+
+
+
+
+
+
+
+
+
+
+
+
 break;//del_promo_item
 
 case "edit_promo_item";

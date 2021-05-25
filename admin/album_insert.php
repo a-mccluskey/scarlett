@@ -26,7 +26,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	echo "<option value=\"". $row['album_id']. "\">". $row['album_name']."</option>\n";
 }
 disconnectAWDB($link);
-?></select><br>
-<input type="submit">
+?></select><br><br>
+<label for="submit"></label><input type="submit">
 </form>
 </div></body></html>

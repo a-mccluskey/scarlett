@@ -34,22 +34,24 @@ Also some description. Ideally should be a lighter weight than the content pages
 </p></td></tr></table>
 
 <a href="#" onclick="toggle_visibility('image_content');" style="color: black; text-decoration: none;"><h2>Imagery Content</h2></a>
-<table id="image_content" style="display: block;"><tr><td style="width:50%;"><h3>Gallery Management</h3>
-<p>Here we can add new albums, edit the albums etc.></p><p>
+<table id="image_content" style="display: block;"><tr><td style="width:50%;"><h3>Gallery management</h3>
+<p>Here we can add new albums, edit the albums etc.</p><p>
 * <a href="album_add.php">Add New Album</a><br>
 * <a href="album_change.php">Modify an Album</a><br>
 * <a href="album_insert.php">Link existing image into an album</a><br>
 * <a href="gallery.php">View all Albums</a> - Including unpublished</p></td>
 
-<td><h3>Image Management</h3>
+<td><h3>Image management</h3>
 <p>Here we can add new images, Change some of the details about the images etc.</p><p>
 * <a href="img_add.php">Add New Image</a><br>
-* <a href="img_change.php">Change Image Details Permissions Etc.</a><br>
+* <a href="img_change.php">Change Image Details Permissions</a>(NYI)<br>
+* <a href="img_maint.php">Image Maintainence</a>(NYI)<br>
+* <a href="img_delete.php">Image Removal</a>(NYI)<br>
 </p></td></tr></table>
 
 <a href="#" onclick="toggle_visibility('site_struct');" style="color: black; text-decoration: none;"><h2>Site Structure</h2></a>
-<table id="site_struct" style="display: block; border: 0px;"><tr><td style="width:50%;"><h3>Promo banner manager</h3>
-<p>Image and links for the promotion banner at the top of the home page.</p><p>
+<table id="site_struct" style="display: block; border: 0px;"><tr><td style="width:49%;"><h3>Promo banner manager</h3>
+<p style="margin-right:5px">Image and links for the promotion banner at the top of the home page.</p><p>
 * <a href="promo_adder.php">Add item to promo banner</a><br>
 * <a href="promo_deleter.php">Remove items from promo banner</a><br>
 * <a href="promo_viewer.php">Edit items in promo banner</a><br></p></td>
@@ -66,7 +68,7 @@ Also some description. Ideally should be a lighter weight than the content pages
 </p></td>
 <td><!-- Intentionally Blank--></td>
 </tr>
-</table>
+</table><br>
 </div>
 </body>
 </html>

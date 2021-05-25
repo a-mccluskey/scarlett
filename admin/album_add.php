@@ -22,8 +22,8 @@ include('session.php');
 <label for="alb_name">Album Name:</label><input type="text" name="alb_name" id="alb_name"><br>
 <label for="alb_date">Date of Photos:</label><input type="text" name="alb_date" placeholder="<?php echo $TodayDate; ?>" id="alb_date"><br>
 <label for="alb_thumb">Default Image:</label><input type="text" name="alb_thumb" id="alb_thumb"> 
-*Note, <i>if this is blank, the default image will be the balloon</i>*<br>
-<input type="submit">
+*Note, <i>if this is blank, the default image will be the balloon</i>*<br><br>
+<label for="submit"></label><input type="submit">
 </form>
 </div>
 </body></html>

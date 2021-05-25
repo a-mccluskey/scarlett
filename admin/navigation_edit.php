@@ -30,9 +30,9 @@ if(is_numeric($nav_ID)==1)
 
   echo '<form action="admin_functions.php?func=edit_navigation" method="post">';
   echo '<input type="hidden" name="nav_id" value="'. $nav_ID .'">';
-  echo 'Link Text: <input type="text" name="nav_text" value="'.$nav_text.'"><br>';
-  echo 'Link Address: <input type="text" name="nav_link" value="'.$nav_link.'"><br>';
-  echo '<input type="submit">';
+  echo '<label for="nav_text">Link Text:</label> <input type="text" name="nav_text" value="'.$nav_text.'"><br>';
+  echo '<label for="nav_link">Link Address:</label> <input type="text" name="nav_link" value="'.$nav_link.'"><br><br>';
+  echo '<label for="submit"></label><input type="submit">';
   echo '</form>';
 
 }

@@ -75,9 +75,9 @@ function DisplayUpdate($updateID)
     //ouput the update in a form
     echo "Modifying an existing update</p>";
     echo "<form action=\"admin_functions.php?func=edit_flash&amp;id=".$updateID."\" method=\"post\">";
-    echo "<label>Update Text:</label><input type=\"text\" name=\"flash_text\" value=\"".$row['t_text']."\"><br>";
-    echo "<label>Posting location:</label><input type=\"text\" name=\"flash_location\" value=\"".$row['t_location']."\"><br>";
-    echo "<input type=\"submit\">\n</form>";
+    echo "<label for=\"flash_text\">Update Text:</label><input type=\"text\" name=\"flash_text\" value=\"".$row['t_text']."\"><br>";
+    echo "<label for=\"flash_location\">Posting location:</label><input type=\"text\" name=\"flash_location\" value=\"".$row['t_location']."\"><br><br>";
+    echo "<label for=\"submit\"></label><input type=\"submit\">\n</form>";
 }//DisplayUpdate(integer)
 
 ?><h1>Site Content Manager</h1>
