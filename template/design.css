@@ -1,44 +1,38 @@
 body {
- font: 22px "Arial Narrow";
- background-color: #FAA;
- margin:0px;
+ background-color:#A34;
+ font: 18px "Arial Narrow";
 }
 #wrapper{
- margin: 67px 0px 0px 0px;
- width:100%;
- background-color: #FCC;
+ margin: 0px auto;
+ width:1024px;
+ background-color: #FEE;
  position: relative;
- padding: 0px;
-}
-#topper {
- background-color: #A22;
- position: fixed;
- top: 0px;
- padding: 0px;
- width: 100%;
- z-index: 1; 
+ padding: 6px;
 }
 p {
  color:#008;
 }
 #promo_banner {
- margin: 5px 5px;
+ margin: 5px 10px;
  display: block;
- font:21px arial;
+ font:20px arial;
  color:#FFF;
  font-weight:bold;
 }
-#promo_item {
+.promo_item {
  float: left;
- text-align: left;
+ text-align: center;
  display: block;
- margin-left: 5px;
+ margin-left: 25px;
 }
-#promo_item a {
+.promo_item a {
  color: #FFF;
  text-decoration:none;
 }
 figcaption {
+ color: #FFF;
+ font:20px arial;
+ text-decoration:none;
  text-align: center;
  bottom: 20px;
  display: flex;
@@ -47,33 +41,43 @@ figcaption {
  right: 0px;
  background-color:#116;
  width:300px;
- color: #FFF;
-margin: -2px;
 }
 nav {
- float: center;
- width: 100%;
-
+ float: right;
+ width: 250px;
+ background-color: #222;
  color: #FFF;
- font: 30px; 
- margin: 2px;
- padding: 1px;
+ font: 25px; 
+ right 25px;
+ padding: 5px;
  font-weight: bold;
 }
 img {
  border: 0px;
- margin: 0px;
+ margin: 2px;
+ object-fit:scale-down;
+}
+.centre {
+//    display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width;
+}
+table {
+ margin: 50px;
 }
 h1 {
  padding-left: 40px;
 }
 #nav_border {
- margin: 1px;
- background-color: #222;
+ margin: 5px;
 }
 nav a {
  color: #FFF;
  text-decoration:none;
+}
+wrapper a {
+ color: #00F;
 }
 figure {
   margin-top: 0px;
@@ -86,9 +90,6 @@ td {
 }
 br.clearLeft {
  clear:left;
-}
-.galleryPreview {
- width:300px;
 }
 div.GalleryPreviewImg {
  display: flex;
