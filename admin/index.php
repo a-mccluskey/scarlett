@@ -63,8 +63,8 @@ Also some description. Ideally should be a lighter weight than the content pages
 
 <tr><td><h3>Redirect manager</h3>
 <p>Redirection links</p><p>
-* <a href="redir_add.php">Add</a><br>
-* <a href="redir_view.php">View Redirections</a><br>
+* <a href="redir.php?func=add">Add</a><br>
+* <a href="redir.php?func=view">View Redirections</a><br>
 </p></td>
 <td><!-- Intentionally Blank--></td>
 </tr>
