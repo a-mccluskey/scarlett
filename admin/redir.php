@@ -56,7 +56,8 @@
     }
     disconnectAWDB($link);
     $i--;
-    echo "<table class=\"b1\"><tr><th class=\"b1\">Code</th><th class=\"b1\">Redirect URL</th><th class=\"b1\">Copy this for the link</th><th class=\"b1\">Hits</th></tr>\n\n";
+    echo "<table class=\"b1\"><tr>\n";
+    echo "<th class=\"b1\">Code</th><th class=\"b1\">Redirect URL</th><th class=\"b1\">Copy this for the link</th><th class=\"b1\">Hits</th></tr>\n\n";
 
     //loop the list of pages
     for ($j=0; $j<=$i; $j++) 
