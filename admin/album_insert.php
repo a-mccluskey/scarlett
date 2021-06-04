@@ -15,7 +15,8 @@ include('session.php');
 <h2>Gallery Managment</h2>
 <h3>Link Existing image to an album</h3>
 <form action="admin_functions.php?func=add_imgtoalbum" method="post">
-<label for="img_id">Image Number: </label><input type="text" name="img_id" id="img_id"><br>
+<label for="img_id">Image Number: </label><input type="number" name="img_id" id="txt_thumb" onchange="UpdateImage()"><br>
+<label>Preview:</label><img id="imgPreview" src=""><br>
 <label for="alb_id">Album Number: </label><select name="alb_id" id="alb_id">
 <?php //Populate the dropdown listt with the existing album names
 require_once("../config.php");

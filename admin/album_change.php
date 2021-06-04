@@ -31,14 +31,16 @@ require_once('../config.php');
 	   echo "<p>Modifing album: ".$row['album_name']."</p>\n";
 	   echo '<form action="admin_functions.php?func=edit_album" method="post">'."\n";
 	   echo '<input type="hidden" name="alb_id" value="'. $row['album_id'] .'">'."\n";
-	   echo 'Album Name: <input type="text" name="alb_name" value="'.$row['album_name'].'"><br>'."\n";
-	   echo 'Is Album Public <input type="checkbox" name="alb_publish" ';
+	   echo '<label for="alb_name">Album Name:</label> <input type="text" name="alb_name" value="'.$row['album_name'].'"><br>'."\n";
+	   echo '<label for="alb_publish">Is Album Public:</label> <input type="checkbox" name="alb_publish" ';
 	   if($row['album_public'])
          { echo 'checked="checked"'; } 
       echo "><br>\n";
-	   echo 'Date of Photos: <input type="text" name="alb_date" value="'.$row['album_date'].'"><br>'."\n";
-	   echo 'Default Image:  <input type="text" name="alb_thumb" value="'.$row['album_thumb'].'"> *Note, if this is blank, the default image will be the balloon*<br>'."\n";
-      echo "<input type=\"submit\"></form>\n";
+	   echo '<label for="alb_date">Date of Photos:</label> <input type="date" name="alb_date" value="'.$row['album_date'].'"><br>'."\n";
+	   echo '<label for="alb_thumb">Default Image:</label>  <input type="number" name="alb_thumb" id="txt_thumb" value="'.$row['album_thumb'].'" onchange="UpdateImage()"> *Note, if this is blank, the default image will be the balloon*<br>'."\n";
+      echo '<label>Preview:</label><img id="imgPreview" 
+      src="'.$MAIN_DOMAIN.'render.php?id='.$row['album_thumb'].'&amp;s=p"><br>';
+      echo "<label for=\"submit\"></label><input type=\"submit\"></form>\n";
    }
  }
  
