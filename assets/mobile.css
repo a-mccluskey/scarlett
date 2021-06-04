@@ -68,14 +68,13 @@ tr:nth-child(odd) {
   background-color: #F7E7E7;
 }
 nav {
- float: center;
- width: 100%;
-
- color: #FFF;
- font: 30px; 
- margin: 2px;
- padding: 1px;
- font-weight: bold;
+  float: center;
+  width: 100%;
+  color: #FFF;
+  font: 30px; 
+  margin: 2px;
+  padding: 1px;
+  font-weight: bold;
 }
 img {
  border: 0px;
@@ -120,4 +119,52 @@ div.GalleryPreviewImg {
  justify-content: center;
  /*background-color:#FDE;*/
  height:230px;
+}
+label {
+  padding: 0px 12px 0px 0px;
+  display: inline-block;
+  width:15%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+input[type=submit],input[type=file] {
+  border: none;
+  border-radius: 8px;
+  color: #FFF;
+  background-color: #090;
+  font-size: 20px;
+  padding: 12px 20px;
+}
+input[type=text],input[type=password],input[type=number],input[type=date], select, textarea{
+  width: 40%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  margin-top: 5px;
+}
+input[type=checkbox]  {
+  height: 20px;
+  width: 20px;
+}
+a {
+  color: #00F;
+}
+a:hover {
+  color: #33F;
+}
+p.GalleryBreadcrumb, p.GalleryBreadcrumb a {
+  margin-left: 10px;
+  color: #080;
+}
+hr {
+  opacity: 0.5;
+  width: 95%;
+}
+hr.border {
+  opacity: 0.2;
+  width: 75%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+
 }
