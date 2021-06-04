@@ -18,10 +18,11 @@ else {
 <link rel="shortcut icon" href="<?php echo $MAIN_DOMAIN; ?>assets/favicon.ico">
 <link rel="apple-touch-icon" href="<?php echo $MAIN_DOMAIN; ?>assets/apple-touch.png"/>
 <script type="text/javascript" src="<?php echo $MAIN_DOMAIN; ?>assets/sc.js"></script>
+<script type="text/javascript">var domain = "<?php echo $MAIN_DOMAIN;?>";</script>
 </head>
 <body>
 <div id="wrapper">
-<div id="topper"><a href="."><IMG SRC="<?php echo $MAIN_DOMAIN; ?>assets/mobile.png" alt="Site header"></a> <a href="#"  onclick="toggle_visibility('nav_border');"><img src="<?php echo $MAIN_DOMAIN; ?>assets/menu.png" align="right"></a></div>
+<div id="topper"><a href="."><img src="<?php echo $MAIN_DOMAIN; ?>assets/mobile.png" alt="Site header"></a><a href="#"  onclick="toggle_visibility('nav_border');"><img src="<?php echo $MAIN_DOMAIN; ?>assets/menu.png" class="alignRight"></a></div>
 <?php 
 
  if($isAdminPage) {
@@ -52,6 +53,7 @@ else {
 <link rel=stylesheet type="text/css" href="<?php echo $MAIN_DOMAIN; ?>assets/design.css">
 <link rel="shortcut icon" href="<?php echo $MAIN_DOMAIN; ?>assets/favicon.ico">
 <script type="text/javascript" src="<?php echo $MAIN_DOMAIN; ?>assets/sc.js"></script>
+<script type="text/javascript">var domain = "<?php echo $MAIN_DOMAIN;?>";</script>
 </head>
 <body>
 <div id="wrapper">
