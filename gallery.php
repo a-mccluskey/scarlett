@@ -45,24 +45,51 @@ error_reporting(E_ALL);*/
     {
       // The image exists and it's visible so don't need the gallery browser
       $gallery_browser = FALSE;
+      $albumCurImageIsIn = $row['img_in_album'];
 
       // navigation structure
       echo $separator . "<a href=\"gallery.php\">Gallery</a>" . $separator;
-      echo "<b><a href=\"gallery.php?alb=".$row['img_in_album']."\">" . alb_id_to_name($row['img_in_album']);
+      echo "<b><a href=\"gallery.php?alb=".$albumCurImageIsIn."\">" . alb_id_to_name($albumCurImageIsIn);
 	    echo "</a></b></p>\n<br>";
       $fullSizeIsVisible = $row['img_fullsize_public'];
+      $previousImageInGallery = getPrevImageInAlbum($image_ID, $albumCurImageIsIn);
+      $nextImageInGallery = getNextImageInGallery($image_ID, $albumCurImageIsIn);
+      if ($previousImageInGallery)
+      {
+        echo "<a href=\"gallery.php?img=".$previousImageInGallery."&amp;alb=".$albumCurImageIsIn."\" class=\"GalleryImageNavLink\" id=\"PreviousImg\">&#8249;</a>";
+      }
+      else 
+      {
+        echo "<a class=\"GalleryImageNavLink\"></a>";
+      }
+
       if ($fullSizeIsVisible)
       {
         echo "<a href=\"render.php?id=".$image_ID."&amp;s=e\">";
       }
 
-      echo "<img src=\"render.php?id=" . $image_ID ."&amp;s=r\" alt=\"".$row['img_description']."\">";
+      echo "<img src=\"render.php?id=" . $image_ID ."&amp;s=r\" alt=\"".$row['img_description']."\" class=\"GalleryImage\">";
 
       if ($fullSizeIsVisible)
       { 
         echo"</a>\n";
       }
-
+      
+      if ($nextImageInGallery)
+      {
+        echo "<a href=\"gallery.php?img=".$nextImageInGallery."&amp;alb=".$albumCurImageIsIn."\" class=\"GalleryImageNavLink\" id=\"NextImg\">&#8250;</a>";
+      }
+      else 
+      {
+        echo "<a class=\"GalleryImageNavLink\"></a>";
+      }
+      echo "<script>var container = document.querySelector('.GalleryImage');
+      container.addEventListener(\"touchstart\", startTouch, false);
+      container.addEventListener(\"touchmove\", moveTouch, false);
+  
+      // Swipe Up / Down / Left / Right
+      var initialX = null;
+      var initialY = null;</script>";
       echo "<br>\n<br> "; 
 	    echo "<b>".$row['img_file_title']."</b><br>".$row['img_description']."<br>\n";
 	  }

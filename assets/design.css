@@ -120,6 +120,9 @@ td {
 br.clearLeft {
  clear:left;
 }
+img.galleryPreview {
+  max-width: 300px;
+}
 div.GalleryPreviewImg {
  display: flex;
  justify-content: center;
@@ -158,6 +161,24 @@ a {
 }
 a:hover {
   color: #33F;
+}
+img.GalleryImage {
+  display: inline-block;vertical-align: middle;
+}
+a.GalleryImageNavLink {
+  font-size: 25pt;
+  background-color: #F8E8E8;
+  text-align: center;
+  width: 35px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  line-height: 150px;
+  margin-right: 5px;
+}
+a.GalleryImageNavLink:hover {
+  background-color: #DCC;
+  border-radius: 3px;
 }
 p.GalleryBreadcrumb, p.GalleryBreadcrumb a {
   margin-left: 10px;
