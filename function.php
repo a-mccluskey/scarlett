@@ -91,19 +91,17 @@
  }
 
  function img_id_to_url($img_id, $size = 'p') {
-  if(is_numeric($img_id)) {
-   $link = connectToAWDB();
-   $sql = "SELECT img_preview_filename, img_main_filename, img_fullsize_filename FROM sc_image_details WHERE img_file_id='$img_id'";
-   $result = dbQuery($sql, $link);
-   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-   disconnectAWDB($link);
+   if(is_numeric($img_id)) {
+    $link = connectToAWDB();
+    $sql = "SELECT img_preview_filename, img_main_filename, img_fullsize_filename FROM sc_image_details WHERE img_file_id='$img_id'";
+    $result = dbQuery($sql, $link);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    disconnectAWDB($link);
     if($size = 'p') { return $row['img_preview_filename']; }
     if($size = 'r') { return $row['img_main_filename']; }
     if($size = 'e') { return $row['img_fullsize_filename']; }
- }//isnumeric
-}//img_id_to_url
-
-
+  }//isnumeric
+ }//img_id_to_url
 
  function gallery_listing($max, $img_data, $MAIN_DOMAIN) {
   global $isMobile;
@@ -134,4 +132,50 @@
   echo "</tr>\n</table>";
  }//gallery_listing
 
+ function getPrevImageInAlbum($image_ID, $albumCurImageIsIn) {
+    $previousImageInGallery ="";
+    $link = connectToAWDB();
+    $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn' AND img_public_viewable = 1";
+    $allOtherImagesInSameAlbumRes = dbQuery($allOtherImagesInSameAlbumSQL, $link);
+    $arrayOfImageDetails = array();
+    $i=0;
+    while($allOtherImagesInSameAlbum = mysqli_fetch_array($allOtherImagesInSameAlbumRes, MYSQLI_ASSOC))
+    {
+      $i++;
+      $arrayOfImageDetails[$i] = $allOtherImagesInSameAlbum['img_file_id'];
+    } //populate a array of all the album headers
+    disconnectAWDB($link);
+    $previousImageInGallery = $arrayOfImageDetails[1];
+    for ($i=1;$i<=count($arrayOfImageDetails);$i++) 
+    {
+      if ($arrayOfImageDetails[$i] == $image_ID) 
+      {
+          $previousImageInGallery = $arrayOfImageDetails[$i-1];
+      }
+    }
+    return $previousImageInGallery;
+  }
+
+  function getNextImageInGallery($image_ID, $albumCurImageIsIn) {
+    $nextImageInGallery = "";
+    $link = connectToAWDB();
+    $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn' AND img_public_viewable = 1";
+    $allOtherImagesInSameAlbumRes = dbQuery($allOtherImagesInSameAlbumSQL, $link);
+    $arrayOfImageDetails = array();
+    $i=0;
+    while($allOtherImagesInSameAlbum = mysqli_fetch_array($allOtherImagesInSameAlbumRes, MYSQLI_ASSOC))
+    {
+      $i++;
+      $arrayOfImageDetails[$i] = $allOtherImagesInSameAlbum['img_file_id'];
+    } //populate a array of all the album headers
+    disconnectAWDB($link);
+    for ($i=1;$i<=count($arrayOfImageDetails);$i++)
+    {
+      if ($arrayOfImageDetails[$i] == $image_ID)
+      {
+        $nextImageInGallery=$arrayOfImageDetails[$i+1];
+      }
+    }
+    return $nextImageInGallery;
+  }
 ?>
