@@ -20,9 +20,10 @@ include('session.php');
  $isAdminPage = True;
 
  $page_title = "Gallery";
+ $separator = " &#8594; ";
  include('../template/index.php');
  echo "<h1>Scarlett Compass Gallery</h1>\n";
- echo "<p><a href=\"index.php\">HOME</a>";
+ echo "<p><a href=\"index.php\">HOME</a>.".$separator;
 
  $album_ID = $_GET['alb'];
  //if $album_ID is a number and the gallery exists then 
@@ -34,6 +35,57 @@ include('session.php');
  
  $gallery_browser = TRUE;
 
+ if(is_numeric($image_ID)==1)
+ {  
+    $link = connectToAWDB();
+    $is_img_pub_query = "SELECT * FROM sc_image_details WHERE img_file_id = '$image_ID'";
+    $result = dbQuery($is_img_pub_query, $link);
+    $row = mysqli_fetch_array($result);
+    disconnectAWDB($link);
+    $albumCurImageIsIn = $row['img_in_album'];
+    $previousImageInGallery = getPrevImageInAlbum($image_ID, $albumCurImageIsIn);
+    $nextImageInGallery = getNextImageInGallery($image_ID, $albumCurImageIsIn);
+ 
+    $gallery_browser = FALSE;
+    echo $gallery_browser." <a href=\"gallery.php\">Gallery</a>".$separator;
+    echo "<a href=\"gallery.php?alb=".$albumCurImageIsIn."\">";
+	  echo alb_id_to_name($albumCurImageIsIn);
+	  echo "</a></p>\n<br><br><br>";
+    if ($previousImageInGallery)
+    {
+      echo "<a href=\"gallery.php?img=".$previousImageInGallery."&amp;alb=".$albumCurImageIsIn."\" class=\"GalleryImageNavLink\" id=\"PreviousImg\">&#8249;</a>";
+    }
+    else 
+    {
+      echo "<a class=\"GalleryImageNavLink\"></a>";
+    }
+    echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&amp;s=e">';
+    echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&amp;s=r" class="GalleryImage">';
+	  echo "</a>\n"; 
+    if ($nextImageInGallery)
+    {
+      echo "<a href=\"gallery.php?img=".$nextImageInGallery."&amp;alb=".$albumCurImageIsIn."\" class=\"GalleryImageNavLink\" id=\"NextImg\">&#8250;</a><br>\n";
+    }
+    else 
+    {
+      echo "<a class=\"GalleryImageNavLink\"></a><br>\n";
+    }
+    echo "<script>var container = document.querySelector('.GalleryImage');
+      container.addEventListener(\"touchstart\", startTouch, false);
+      container.addEventListener(\"touchmove\", moveTouch, false);
+  
+      // Swipe Up / Down / Left / Right
+      var initialX = null;
+      var initialY = null;</script>";
+    echo "<b>".$row['img_file_title']."</b>\n<br>".$row['img_description']."<br>\n";
+    echo "Regular Views: ".$row['img_main_views']."<br>\n";
+    echo "Extended Views: ".$row['img_fullsize_views']."<br><br>\n";
+	  
+    //check for image existing, check that the album is published
+    //should only display one image
+    //also display the description, and if applicable display the expanded version of the image.
+    
+ }
  if(is_numeric($album_ID)==1)
  { //We are looking at an album only
   $link = connectToAWDB();
@@ -42,10 +94,11 @@ include('session.php');
   //was having difficulty doing this in one statement...
   $result = dbQuery($is_album_public_query, $link);
   $row = mysqli_fetch_array($result);
-  echo " -> <a href=\"gallery.php\">Gallery</a> -> ".$row['album_name']."<br>"; 
+  echo "<a href=\"gallery.php\">Gallery</a>".$separator.$row['album_name']."<br>"; 
   //display a little navigation
   echo "<i>Album has been viewed ".$row['alb_views']." times</i><p>";
   $gallery_browser = FALSE; //We dont want the gallery displaying at the end of the album
+  
 
   $get_all_album_images =  "SELECT * FROM sc_image_details WHERE img_in_album='$album_ID'";
   //get the list of images assosiated with this album
@@ -67,33 +120,6 @@ include('session.php');
      //possible - if on mobile allow swiping through images? may need to not include the header until after this point...
    } //if there are in this album
    else { echo "There are no images in this album.<br>"; }//if i<=0
- }
-
-
- if(is_numeric($image_ID)==1)
- {  
-    $link = connectToAWDB();
-    $is_img_pub_query = "SELECT * FROM sc_image_details WHERE img_file_id = '$image_ID'";
-    $result = dbQuery($is_img_pub_query, $link);
-    $row = mysqli_fetch_array($result);
-    disconnectAWDB($link);
- 
-    $gallery_browser = FALSE;
-    echo " -> <a href=\"gallery.php\">Gallery</a> ->";
-    echo "<a href=\"gallery.php?alb=".$row['img_in_album']."\">";
-	  echo alb_id_to_name($row['img_in_album']);
-	  echo "</a></p>\n<br>";
-    echo '<a href="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&amp;s=e">';
-    echo '<img src="'.$MAIN_DOMAIN.'render.php?id='.$image_ID.'&amp;s=r">';
-	  echo "</a>\n<br>\n"; 
-    echo "<b>".$row['img_file_title']."</b>\n<br>".$row['img_description']."<br>\n";
-    echo "Regular Views: ".$row['img_main_views']."<br>\n";
-    echo "Extended Views: ".$row['img_fullsize_views']."<br><br>\n";
-	  
-    //check for image existing, check that the album is published
-    //should only display one image
-    //also display the description, and if applicable display the expanded version of the image.
-    
  }
 
  //If neither of the two are a number, or the number is invalid, then
