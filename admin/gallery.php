@@ -43,8 +43,8 @@ include('session.php');
     $row = mysqli_fetch_array($result);
     disconnectAWDB($link);
     $albumCurImageIsIn = $row['img_in_album'];
-    $previousImageInGallery = getPrevImageInAlbum($image_ID, $albumCurImageIsIn);
-    $nextImageInGallery = getNextImageInGallery($image_ID, $albumCurImageIsIn);
+    $previousImageInGallery = getPrevImageInAlbum($image_ID, $albumCurImageIsIn, true);
+    $nextImageInGallery = getNextImageInGallery($image_ID, $albumCurImageIsIn, true);
  
     $gallery_browser = FALSE;
     echo $gallery_browser." <a href=\"gallery.php\">Gallery</a>".$separator;
