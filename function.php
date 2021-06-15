@@ -132,10 +132,15 @@
   echo "</tr>\n</table>";
  }//gallery_listing
 
- function getPrevImageInAlbum($image_ID, $albumCurImageIsIn) {
+ function getPrevImageInAlbum($image_ID, $albumCurImageIsIn, $isAdmin = false) {
     $previousImageInGallery ="";
     $link = connectToAWDB();
-    $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn' AND img_public_viewable = 1";
+    if ($isAdmin) {
+      $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn'";
+    }
+    else {
+      $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn' AND img_public_viewable = 1";
+    }
     $allOtherImagesInSameAlbumRes = dbQuery($allOtherImagesInSameAlbumSQL, $link);
     $arrayOfImageDetails = array();
     $i=0;
@@ -156,10 +161,15 @@
     return $previousImageInGallery;
   }
 
-  function getNextImageInGallery($image_ID, $albumCurImageIsIn) {
+  function getNextImageInGallery($image_ID, $albumCurImageIsIn, $isAdmin = false) {
     $nextImageInGallery = "";
     $link = connectToAWDB();
-    $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn' AND img_public_viewable = 1";
+    if ($isAdmin) {
+      $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn'";
+    }
+    else {
+      $allOtherImagesInSameAlbumSQL = "SELECT * FROM sc_image_details WHERE img_in_album = '$albumCurImageIsIn' AND img_public_viewable = 1";
+    }
     $allOtherImagesInSameAlbumRes = dbQuery($allOtherImagesInSameAlbumSQL, $link);
     $arrayOfImageDetails = array();
     $i=0;
