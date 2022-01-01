@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using ScarNet.Services
+@inject NavigationService Navigation
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -16,15 +18,15 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                    <ul class="navbar-nav flex-grow-1">
-                        @foreach (var Item in Startup.Navigation)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="@Item.Location">@Item.Title</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                <ul class="navbar-nav flex-grow-1">
+                    @foreach (var Item in Navigation.GetNavigations())
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="@Item.Location">@Item.Title</a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </nav>
     </header>
     <div class="container">

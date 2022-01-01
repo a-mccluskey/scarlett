@@ -9,9 +9,9 @@ namespace ScarNet
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
-    using System.Collections.Generic;
-    using MySql.Data.MySqlClient;
-    using System.Data;
+    using ScarNet.DataSources;
+    using ScarNet.Services;
+    using ScarNet.Services.IServices;
 
     /// <summary>
     /// Startup Class.
@@ -25,27 +25,6 @@ namespace ScarNet
         public Startup(IConfiguration configuration)
         {
             this.Configuration = configuration;
-            Navigation = new List<Models.Navigation>();
-            using (MySqlConnection con = new MySqlConnection(this.Configuration.GetConnectionString("DefaultConnection"))) 
-            {
-                using (MySqlCommand cmd = new MySqlCommand("Select * from navigation", con))
-                {
-                    con.Open();
-                    DataSet ds = new DataSet();
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                    {
-                        da.Fill(ds);
-                        
-                    }
-                }
-            }
-
-
-
-            var foo = new Models.Navigation("Home", "Index", 1);
-            Navigation.Add(foo);
-            Navigation.Add(new Models.Navigation("My Aweseome Gallery", "Gallery", 2));
-            Navigation.Add(new Models.Navigation("About", "article.php?id=4", 3));
         }
 
         /// <summary>
@@ -56,8 +35,6 @@ namespace ScarNet
         /// </value>
         public IConfiguration Configuration { get; }
 
-        public static List<Models.Navigation> Navigation { get; set; }
-
         /// <summary>
         /// Configures the services.
         /// </summary>
@@ -66,6 +43,8 @@ namespace ScarNet
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddSingleton<IDataSource, MySQLDataSource>();
+            services.AddTransient<NavigationService>();
         }
 
         /// <summary>

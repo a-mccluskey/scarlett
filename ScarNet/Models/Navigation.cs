@@ -4,10 +4,6 @@
 
 namespace ScarNet.Models
 {
-    using System;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Hosting;
-
     /// <summary>
     /// Navigation elements.
     /// </summary>
