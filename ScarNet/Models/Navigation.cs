@@ -5,6 +5,8 @@
 namespace ScarNet.Models
 {
     using System;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Hosting;
 
     /// <summary>
     /// Navigation elements.
@@ -14,13 +16,20 @@ namespace ScarNet.Models
         /// <summary>
         /// The title.
         /// </summary>
-        public string Title;
+        public string Title { get; set; }
 
         /// <summary>
         /// The location.
         /// </summary>
-        public Uri Location;
+        public string Location { get; set; }
 
-        private readonly int id;
+        private int Id { get; }
+
+        public Navigation(string Title, string Location, int Id)
+        {
+            this.Title = Title;
+            this.Location = Location;
+            this.Id = Id;
+        }
     }
 }
