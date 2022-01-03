@@ -70,9 +70,7 @@ namespace ScarNet
             app.UseStaticFiles();
 
             app.UseRouting();
-
             app.UseAuthorization();
-            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {

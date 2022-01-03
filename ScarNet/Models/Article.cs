@@ -9,6 +9,25 @@ namespace ScarNet.Models
     public class Article
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Article"/> class.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <param name="text">The text.</param>
+        /// <param name="updated">The updated.</param>
+        /// <param name="created">The created.</param>
+        /// <param name="preview">The preview.</param>
+        /// <param name="id">The identifier.</param>
+        public Article(string title, string text, DateTime updated, DateTime created, string preview, int id)
+        {
+            this.Title = title;
+            this.Text = text;
+            this.Updated = updated;
+            this.Created = created;
+            this.Preview = preview;
+            this.Id = id;
+        }
+
+        /// <summary>
         /// The title.
         /// </summary>
         public string Title { get; set; }
@@ -62,15 +81,5 @@ namespace ScarNet.Models
         public int ViewCount { get; set; }
 
         private int Id { get; }
-
-        public Article(string Title, string Text, DateTime Updated, DateTime Created, string Preview, int Id)
-        {
-            this.Title = Title;
-            this.Text = Text;
-            this.Updated = Updated;
-            this.Created = Created;
-            this.Preview = Preview;
-            this.Id = Id;
-        }
     }
 }

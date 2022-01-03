@@ -17,7 +17,7 @@ nav a:hover {
 
 .container {
     margin: 0px auto;
-    width: 1024px;
+    min-width: 1024px;
     background-color: #FEE;
     position: relative;
     padding: 6px;
@@ -72,13 +72,13 @@ button.accept-policy {
 html {
     position: relative;
     min-height: 100%;
-    background-color: #EE5555;
+    background-color: #A34;
 }
 
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: #EE5555;
+    background-color: #A34;
     font: 18px "Arial Narrow";
 }
 .footer {

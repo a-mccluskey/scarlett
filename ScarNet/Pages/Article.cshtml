@@ -3,7 +3,7 @@
 @inject ArticleService article
 @model ScarNet.Pages.ArticleModel
 @{
-    var thisArticle = article.GetArticleById(Model.id);
+    var thisArticle = article.GetArticleById(Model.Id);
     ViewData["Title"] = thisArticle.Title;
 }
 <h1>@ViewData["Title"]</h1>

@@ -10,6 +10,29 @@ namespace ScarNet.Models
     public class Navigation
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="Navigation"/> class.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <param name="location">The location.</param>
+        /// <param name="id">The identifier.</param>
+        public Navigation(string title, string location, int id)
+        {
+            this.Title = title;
+            if (location != null && location.Contains("Article/"))
+            {
+                this.ArticleID = location.Replace("/Article/", string.Empty).Replace("Article/", string.Empty);
+                this.Location = location.Replace("/" + this.ArticleID, string.Empty);
+            }
+            else
+            {
+                this.Location = location;
+                this.ArticleID = string.Empty;
+            }
+
+            this.Id = id;
+        }
+
+        /// <summary>
         /// The title.
         /// </summary>
         public string Title { get; set; }
@@ -28,21 +51,5 @@ namespace ScarNet.Models
         public string ArticleID { get; set; }
 
         private int Id { get; }
-
-        public Navigation(string Title, string Location, int Id)
-        {
-            this.Title = Title;
-            if (Location != null && Location.Contains("Article/"))
-            {
-                ArticleID = Location.Replace("/Article/", string.Empty).Replace("Article/", string.Empty);
-                this.Location = Location.Replace("/" + ArticleID, string.Empty);
-            }
-            else
-            {
-                this.Location = Location;
-                ArticleID = string.Empty;
-            }
-            this.Id = Id;
-        }
     }
 }

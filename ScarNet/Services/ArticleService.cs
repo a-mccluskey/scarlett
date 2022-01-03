@@ -4,10 +4,10 @@
 
 namespace ScarNet.Services
 {
+    using System.Collections.Generic;
     using ScarNet.DataSources;
     using ScarNet.Models;
     using ScarNet.Services.IServices;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Article Service

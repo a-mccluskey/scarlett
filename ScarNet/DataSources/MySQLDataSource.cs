@@ -37,7 +37,8 @@ namespace ScarNet.DataSources
             {
                 while (reader.Read())
                 {
-                    article = new Article(reader.GetString("art_title"),
+                    article = new Article(
+                        reader.GetString("art_title"),
                         reader.GetString("art_text"),
                         reader.GetDateTime("art_created"),
                         reader.GetDateTime("art_updated"),
@@ -60,7 +61,8 @@ namespace ScarNet.DataSources
             {
                 while (reader.Read())
                 {
-                    articles.Add(new Article(reader.GetString("art_title"),
+                    articles.Add(new Article(
+                        reader.GetString("art_title"),
                         reader.GetString("art_text"),
                         reader.GetDateTime("art_created"),
                         reader.GetDateTime("art_updated"),

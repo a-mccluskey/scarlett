@@ -5,8 +5,12 @@ namespace ScarNet.Pages
 
     public class ArticleModel : PageModel
     {
+        /// <summary>
+        /// The identifier
+        /// </summary>
+        public int Id;
+
         private readonly ILogger<GalleryModel> logger;
-        public int id;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GalleryModel"/> class.
@@ -17,9 +21,13 @@ namespace ScarNet.Pages
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Called when [get].
+        /// </summary>
+        /// <param name="id">The identifier.</param>
         public void OnGet(int id)
         {
-            this.id = id;
+            this.Id = id;
         }
     }
 }
