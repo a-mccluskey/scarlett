@@ -11,15 +11,15 @@ namespace ScarNet.Pages
     /// Index model.
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
-    public class IndexModel : PageModel
+    public class Index : PageModel
     {
-        private readonly ILogger<IndexModel> logger;
+        private readonly ILogger<Index> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IndexModel"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public IndexModel(ILogger<IndexModel> logger)
+        public Index(ILogger<Index> logger)
         {
             this.logger = logger;
         }

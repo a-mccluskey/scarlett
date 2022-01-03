@@ -1,4 +1,4 @@
-// <copyright file="GalleryModel.chtml.cs" company="Scarlett Dot Net">
+// <copyright file="Gallery.cshtml.cs" company="Scarlett Dot Net">
 // Copyright (c) Scarlett Dot Net. All rights reserved.
 // </copyright>
 namespace ScarNet.Pages
@@ -6,15 +6,15 @@ namespace ScarNet.Pages
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
 
-    public class GalleryModel : PageModel
+    public class Gallery : PageModel
     {
-        private readonly ILogger<GalleryModel> logger;
+        private readonly ILogger<Gallery> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GalleryModel"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public GalleryModel(ILogger<GalleryModel> logger)
+        public Gallery(ILogger<Gallery> logger)
         {
             this.logger = logger;
         }

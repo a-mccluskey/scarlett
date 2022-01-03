@@ -11,15 +11,15 @@ namespace ScarNet.Pages
     /// Privacy Model.
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.RazorPages.PageModel" />
-    public class PrivacyModel : PageModel
+    public class Privacy : PageModel
     {
-        private readonly ILogger<PrivacyModel> logger;
+        private readonly ILogger<Privacy> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrivacyModel"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public Privacy(ILogger<Privacy> logger)
         {
             this.logger = logger;
         }

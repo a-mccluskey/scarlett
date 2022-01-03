@@ -1,4 +1,4 @@
-// <copyright file="ArticleModel.chtml.cs" company="Scarlett Dot Net">
+// <copyright file="Article.cshtml.cs" company="Scarlett Dot Net">
 // Copyright (c) Scarlett Dot Net. All rights reserved.
 // </copyright>
 namespace ScarNet.Pages
@@ -6,7 +6,7 @@ namespace ScarNet.Pages
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.Extensions.Logging;
 
-    public class ArticleModel : PageModel
+    public class Article : PageModel
     {
         /// <summary>
         /// The identifier
@@ -19,7 +19,7 @@ namespace ScarNet.Pages
         /// Initializes a new instance of the <see cref="GalleryModel"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public ArticleModel(ILogger<GalleryModel> logger)
+        public Article(ILogger<GalleryModel> logger)
         {
             this.logger = logger;
         }

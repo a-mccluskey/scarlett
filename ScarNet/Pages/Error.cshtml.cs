@@ -1,4 +1,4 @@
-// <copyright file="ErrorModel.chtml.cs" company="Scarlett Dot Net">
+// <copyright file="Error.cshtml.cs" company="Scarlett Dot Net">
 // Copyright (c) Scarlett Dot Net. All rights reserved.
 // </copyright>
 
@@ -14,15 +14,15 @@ namespace ScarNet.Pages
     /// </summary>
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     [IgnoreAntiforgeryToken]
-    public class ErrorModel : PageModel
+    public class Error : PageModel
     {
-        private readonly ILogger<ErrorModel> logger;
+        private readonly ILogger<Error> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ErrorModel"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public ErrorModel(ILogger<ErrorModel> logger)
+        public Error(ILogger<Error> logger)
         {
             this.logger = logger;
         }
