@@ -22,7 +22,7 @@
                     @foreach (var Item in Navigation.GetNavigations())
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="@Item.Location">@Item.Title</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="@Item.Location" asp-route-id="@Item.ArticleID">@Item.Title</a>
                         </li>
                     }
                 </ul>
@@ -34,12 +34,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - ScarNet - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

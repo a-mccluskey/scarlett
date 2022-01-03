@@ -11,7 +11,6 @@ namespace ScarNet
     using Microsoft.Extensions.Hosting;
     using ScarNet.DataSources;
     using ScarNet.Services;
-    using ScarNet.Services.IServices;
 
     /// <summary>
     /// Startup Class.
@@ -45,6 +44,7 @@ namespace ScarNet
             services.AddRazorPages();
             services.AddSingleton<IDataSource, MySQLDataSource>();
             services.AddTransient<NavigationService>();
+            services.AddTransient<ArticleService>();
         }
 
         /// <summary>
@@ -72,6 +72,7 @@ namespace ScarNet
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {

@@ -4,7 +4,6 @@
 
 namespace ScarNet.DataSources
 {
-    using System;
     using System.Collections.Generic;
     using Microsoft.Extensions.Configuration;
     using MySql.Data.MySqlClient;
@@ -12,7 +11,7 @@ namespace ScarNet.DataSources
 
     public class MySQLDataSource : IDataSource
     {
-        private readonly string ConnectionString;
+        private readonly string connectionString;
         private readonly MySqlConnection connection;
 
         /// <summary>
@@ -20,39 +19,75 @@ namespace ScarNet.DataSources
         /// </summary>
         public MySQLDataSource(IConfiguration configuration)
         {
-            this.ConnectionString = configuration.GetConnectionString("DefaultConnection");
-            this.connection = new MySqlConnection(this.ConnectionString);
+            this.connectionString = configuration.GetConnectionString("DefaultConnection");
+            this.connection = new MySqlConnection(this.connectionString);
+            //// Initialise the connection
+            this.connection.Open();
+            _ = this.connection.Ping();
+            this.connection.Close();
         }
 
         /// <inheritdoc />
         Article IDataSource.GetArticleById(int id)
         {
-            throw new NotImplementedException();
+            Article article = null;
+            MySqlCommand cmd = new MySqlCommand($"Select * from articles Where art_id = '{id}'", this.connection);
+            this.connection.Open();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    article = new Article(reader.GetString("art_title"),
+                        reader.GetString("art_text"),
+                        reader.GetDateTime("art_created"),
+                        reader.GetDateTime("art_updated"),
+                        reader.GetString("art_preview"),
+                        reader.GetInt32("art_id"));
+                }
+            }
+
+            this.connection.Close();
+            return article;
         }
 
         /// <inheritdoc />
         List<Article> IDataSource.GetArticleList()
         {
-            throw new NotImplementedException();
+            var articles = new List<Article>();
+            MySqlCommand cmd = new MySqlCommand("Select * from navigation", this.connection);
+            this.connection.Open();
+            using (var reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    articles.Add(new Article(reader.GetString("art_title"),
+                        reader.GetString("art_text"),
+                        reader.GetDateTime("art_created"),
+                        reader.GetDateTime("art_updated"),
+                        reader.GetString("art_preview"),
+                        reader.GetInt32("art_id")));
+                }
+            }
+
+            this.connection.Close();
+            return articles;
         }
 
         /// <inheritdoc />
         List<Navigation> IDataSource.GetNavigation()
         {
             var navigation = new List<Navigation>();
-            using (this.connection)
+            MySqlCommand cmd = new MySqlCommand("Select * from navigation", this.connection);
+            this.connection.Open();
+            using (var reader = cmd.ExecuteReader())
             {
-                this.connection.Open();
-                MySqlCommand cmd = new MySqlCommand("Select * from navigation", this.connection);
-                using (var reader = cmd.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        navigation.Add(new Navigation(reader.GetString("nav_text"), reader.GetString("nav_link"), reader.GetInt32("nav_id")));
-                    }
+                    navigation.Add(new Navigation(reader.GetString("nav_text"), reader.GetString("nav_link"), reader.GetInt32("nav_id")));
                 }
             }
 
+            this.connection.Close();
             return navigation;
         }
     }

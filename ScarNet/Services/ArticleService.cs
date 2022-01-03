@@ -4,39 +4,44 @@
 
 namespace ScarNet.Services
 {
-    using System.Collections.Generic;
     using ScarNet.DataSources;
     using ScarNet.Models;
     using ScarNet.Services.IServices;
+    using System.Collections.Generic;
 
     /// <summary>
-    /// Navigation Service
+    /// Article Service
     /// </summary>
-    /// <seealso cref="ScarNet.Services.IServices.INavigationService" />
-    public class NavigationService : INavigationService
+    public class ArticleService : IArticleService
     {
         private readonly IDataSource dataSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationService"/> class.
         /// </summary>
-        public NavigationService()
+        public ArticleService()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationService"/> class.
+        /// Initializes a new instance of the <see cref="ArticleService"/> class.
         /// </summary>
         /// <param name="dataSource">The data source.</param>
-        public NavigationService(IDataSource dataSource)
+        public ArticleService(IDataSource dataSource)
         {
             this.dataSource = dataSource;
         }
 
         /// <inheritdoc />
-        public List<Navigation> GetNavigations()
+        public Article GetArticleById(int id)
         {
-            return this.dataSource.GetNavigation();
+            return this.dataSource.GetArticleById(id);
+        }
+
+        /// <inheritdoc />
+        public List<Article> GetArticles()
+        {
+            return this.dataSource.GetArticleList();
         }
     }
 }
