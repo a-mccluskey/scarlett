@@ -1,4 +1,4 @@
-// <copyright file="Navigation.cs" company="Scarlett Dot Net">
+// <copyright file="ErrorModel.chtml.cs" company="Scarlett Dot Net">
 // Copyright (c) Scarlett Dot Net. All rights reserved.
 // </copyright>
 

@@ -9,7 +9,7 @@ namespace ScarNet.Services.IServices
     /// <summary>
     /// The IFlashUpdateService
     /// </summary>
-    interface IFlashUpdateService
+    public interface IFlashUpdateService
     {
         /// <summary>
         /// Gets the flash updates range.

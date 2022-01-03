@@ -1,3 +1,6 @@
+// <copyright file="GalleryModel.chtml.cs" company="Scarlett Dot Net">
+// Copyright (c) Scarlett Dot Net. All rights reserved.
+// </copyright>
 namespace ScarNet.Pages
 {
     using Microsoft.AspNetCore.Mvc.RazorPages;

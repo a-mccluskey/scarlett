@@ -10,7 +10,7 @@ namespace ScarNet.Services.IServices
     /// <summary>
     /// The IArticleService Interface.
     /// </summary>
-    interface IArticleService
+    public interface IArticleService
     {
         /// <summary>
         /// Gets the articles.

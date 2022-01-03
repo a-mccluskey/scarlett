@@ -10,7 +10,7 @@ namespace ScarNet.Services.IServices
     /// <summary>
     /// The INavigationService Interface.
     /// </summary>
-    interface INavigationService
+    public interface INavigationService
     {
         /// <summary>
         /// Gets the navigation.

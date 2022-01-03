@@ -1,4 +1,4 @@
-﻿// <copyright file="NavigationService.cs" company="Scarlett Dot Net">
+﻿// <copyright file="ArticleService.cs" company="Scarlett Dot Net">
 // Copyright (c) Scarlett Dot Net. All rights reserved.
 // </copyright>
 
