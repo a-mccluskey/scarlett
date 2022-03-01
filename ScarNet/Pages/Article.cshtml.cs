@@ -13,13 +13,13 @@ namespace ScarNet.Pages
         /// </summary>
         public int Id;
 
-        private readonly ILogger<GalleryModel> logger;
+        private readonly ILogger<Article> logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GalleryModel"/> class.
         /// </summary>
         /// <param name="logger">The logger.</param>
-        public Article(ILogger<GalleryModel> logger)
+        public Article(ILogger<Article> logger)
         {
             this.logger = logger;
         }
