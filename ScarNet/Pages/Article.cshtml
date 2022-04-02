@@ -1,7 +1,7 @@
 ﻿@page "/Article/{id:int}"
 @using ScarNet.Services
 @inject ArticleService article
-@model ScarNet.Pages.ArticleModel
+@model ScarNet.Pages.Article
 @{
     var thisArticle = article.GetArticleById(Model.Id);
     ViewData["Title"] = thisArticle.Title;

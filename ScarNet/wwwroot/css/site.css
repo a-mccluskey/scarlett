@@ -18,9 +18,12 @@ nav a:hover {
 .container {
     margin: 0px auto;
     min-width: 1024px;
-    background-color: #FEE;
     position: relative;
     padding: 6px;
+}
+
+.page-content {
+    background-color: #FEE;
 }
 
 /* Provide sufficient contrast against white background */
